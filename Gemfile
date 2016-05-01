@@ -89,14 +89,11 @@ gem 'validates_formatting_of'
 # soft deleting
 gem 'paranoia', '~> 2.1.5'
 
-# Social events (comment, share, )
+# Social events (comment, share)
 gem 'acts_as_commentable_with_threading'
 gem 'commontator', '~> 4.11', '>= 4.11.1'
 gem 'unread', '~> 0.8.0'
-gem 'social_shares', '~> 0.3.0'
-
-
-gem 'delayed_job_active_record'
+gem 'social-share-button'
 
 # This gem is for better-errors gem
 gem 'binding_of_caller'
