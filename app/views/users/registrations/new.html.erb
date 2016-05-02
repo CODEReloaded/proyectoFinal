@@ -1,0 +1,87 @@
+	  <nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
+      		<!-- Brand and toggle get grouped for better mobile display -->
+       	<div clas="container">
+          <a class="navbar-brand" href="">
+            <i class="fa fa-rocket fa-4"></i>
+            <div class="content-hidden">Mascotas</div>
+          </a>
+          <ul class="nav navbar-nav collapsed pull-xs-right">
+          	<li class="nav-item">
+              <%= link_to '#', :class => 'nav-link' do%>
+              	<%= fa_icon "home" %> <div class="content-hidden">Inicio</div>
+              <% end %>
+          	</li>
+          	<li class="nav-item">
+              <%= link_to new_user_session_path, :class => 'nav-link' do%>
+              	<%= fa_icon "sign-in" %> <div class="content-hidden">Ingresa</div>
+              <% end %>
+          	</li>
+          
+          	<li class="nav-item active">
+              <%= link_to new_user_registration_path, class:"nav-link" do %>
+              	<%= fa_icon "pencil-square-o" %> <div class="content-hidden">Registrate</div>
+              <% end %>
+          	</li>
+          </ul>
+      	</div><!-- bs-example-navbar-collapse-1 -->
+      </nav>
+
+      <div id="wrapper">
+    	<!-- Page Content -->
+      	<div id="page-content-wrapper">
+          <div class="container">
+          	<div class="row">
+              <div class="col-sm-offset-2 col-md-offset-3 col-lg-offset-4 col-xs-12 col-sm-8 col-md-6 col-lg-4">
+              	<div class="omb_login">
+               	  <h3 class="omb_authTitle" style="text-align:center">Registro</h3>
+              		<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                  	<% if alert or f.error_notification %>
+                  	<div class="alert alert-warning" role="alert">
+                      <strong class="warning"></strong>
+                      <%= alert %>
+                      <%= f.error_notification %>
+                  	</div>
+                  	<% end %>
+
+                  	<div class="form-inputs">
+                  	  <div class="form-group">
+                  		  <%= f.input :email, required: true, autofocus: ((!resource.errors or resource.errors.include?(:email)) ? true : false ), input_html: { class:'form-control', placeholder: 'example@domain.com' } %>
+                  	  </div>
+                      <div class="form-group">
+                        <%= f.input :given_name, required: true, autofocus: (resource.errors.include?(:given_name) ? true : false ), input_html: { class:'form-control' } %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.input :first_surname, required: true, autofocus: (resource.errors.include?(:first_surname) ? true : false ), input_html: { class:'form-control' } %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.input :second_surname, required: true, autofocus: (resource.errors.include?(:second_surname) ? true : false ), input_html: { class:'form-control' } %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.input :phone_number, required: true, autofocus: (resource.errors.include?(:phone_number) ? true : false ), input_html: { class:'form-control', placeholder: '1234-5678 ó 55-1234-5678' } %>
+                      </div>
+                  	  <div class="form-group">
+                  	  	<%= f.input :password, required: true, hint: ("#{@minimum_password_length} caracteres minimo " if @minimum_password_length), autofocus: ((resource.errors.include?(:password_confirmation) or resource.errors.include?(:password)) ? true : false ), input_html: { class:'form-control' } %>
+                  	  </div>
+                  	  <div class="form-group">
+                        <%= f.input :password_confirmation, required: true, input_html: { class:'form-control' } %>
+                      </div>
+      	  		      </div>
+
+                    <div class="form-actions">
+                      <%= f.button :submit, "Registrarme", class: 'btn btn-primary btn-block' %>
+                    </div>
+                  <% end %>
+
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <p class="omb_forgotPwd">
+                        <%= render "users/shared/links" %>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          	</div>
+        	</div>
+      	</div><!-- /#page-content-wrapper -->
+      </div><!-- /#wrapper -->

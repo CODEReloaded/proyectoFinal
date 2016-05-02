@@ -1,0 +1,94 @@
+      <nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div clas="container">
+          <a class="navbar-brand" href="">
+            <i class="fa fa-rocket fa-4"></i>
+            <div class="content-hidden">Mascotas</div>
+          </a>
+          <ul class="nav navbar-nav collapsed pull-xs-right">
+            <li class="nav-item">
+              <%= link_to user_path, :class => 'nav-link' do%>
+                <%= fa_icon "home"%> <div class="content-hidden">Inicio</div>
+              <% end %>
+            </li>
+            <li class="nav-item active">
+              <%= link_to edit_user_path, class:"nav-link" do %>
+                <%= fa_icon "pencil" %> <div class="content-hidden">Editar Cuenta</div>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to destroy_user_session_path, method: 'delete', class:"nav-link" do %>
+                <%= fa_icon "sign-out" %> <div class="content-hidden">Salir</div>
+              <% end %>
+            </li>
+          </ul>
+        </div><!-- bs-example-navbar-collapse-1 -->
+      </nav>
+
+      <div id="wrapper">
+      <!-- Page Content -->
+        <div id="page-content-wrapper">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-offset-2 col-md-offset-3 col-lg-offset-4 col-xs-12 col-sm-8 col-md-6 col-lg-4">
+                <div class="omb_login">
+                  <h3 class="omb_authTitle" style="text-align:center">Editar Datos</h3>
+                  <%= simple_form_for(resource, as: resource_name, url: update_user_path, html: { method: :put }) do |f| %>
+
+                    <% if alert or f.error_notification %>
+                    <div class="alert alert-warning" role="alert">
+                      <strong class="warning"></strong>
+                      <%= alert %>
+                      <%= f.error_notification %>
+                    </div>
+                    <% end %>
+
+                    <div class="form-inputs">
+                      <div class="form-group">
+                        <%= f.input :email, required: true, autofocus: ((!resource.errors or resource.errors.include?(:email)) ? true : false ), input_html: { class:'form-control', placeholder: 'example@domain.com' } %>
+                      </div
+                      <div class="form-group">
+                        <%= f.input :given_name, required: true, autofocus: (resource.errors.include?(:given_name) ? true : false ), input_html: { class:'form-control' } %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.input :first_surname, required: true, autofocus: (resource.errors.include?(:first_surname) ? true : false ), input_html: { class:'form-control' } %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.input :second_surname, required: true, autofocus: (resource.errors.include?(:second_surname) ? true : false ), input_html: { class:'form-control' } %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.input :phone_number, required: true, autofocus: (resource.errors.include?(:phone_number) ? true : false ), input_html: { class:'form-control', placeholder: '1234-5678 ó 55-1234-5678' } %>
+                      </div>
+                      <div class="form-group">
+                        <a data-toggle="collapse" href="#collapsePass" aria-expanded="false" aria-controls="collapsePass">Actualizar contraseña</a>
+                      </div>
+                      <ul class="nav nav-pills nav-stacked collapse" id="collapsePass" style="list-style-type:none;">
+                        <li class="nav-item">
+                          <div class="form-group">
+                            <%= f.input :password, autocomplete: "off", hint: "Dejar en blanco si no la quieres cambiar", required: false, input_html: { class:'form-control'} %>
+                          </div>
+                          <div class="form-group">
+                            <%= f.input :password_confirmation, required: false, input_html: { class:'form-control'} %>
+                          </div>
+                        </li>
+                      </ul>
+                      <div class="form-group">
+                        <%= f.input :current_password, required: true, autofocus: (resource.errors.include?(:current_password) ? true : false ), input_html: { class:'form-control' }, hint: "Debes ingresar tu contraseña actual para actualizar los datos " %>
+                      </div>
+                    </div>
+
+                    <div class="form-actions">
+                      <%= f.button :submit, "Actualizar datos", class: 'btn btn-primary btn-block' %>
+                    </div>
+                  <% end %>
+
+                    <h3>Cancelar cuenta</h3>
+                    <p>¿No estás contento? <%= link_to "Cancelar mi cuenta", registration_path(resource_name), data: { confirm: "Estas seguro?" }, method: :delete %></p>
+                    <%= link_to "Regresar", :back %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /#page-content-wrapper -->
+      </div><!-- /#wrapper -->

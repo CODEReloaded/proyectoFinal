@@ -1,14 +1,56 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>ProyectoFinal</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="es-MX">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<%= yield %>
+    <title><%= @title %></title>
+  	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  	<%= csrf_meta_tags %>
+  </head>
 
-</body>
+  <body>
+
+    <%= yield %>
+    
+    <footer class="text-muted">
+      <hr/>
+      <div class="container">
+        <div class="col-xs-12">
+          <center>Navega en nuestro sitio, podrás encontrar el compañero que querías.</center>
+        </div>
+        <div class="col-sm-6">
+          <p>&copy; CODEReloaded!</p>
+        </div>
+        <div class="col-sm-6">
+          <div class="pull-xs-right">
+            <% if current_user %>
+            <p><%= link_to 'Navega ', user_path, class:"nav-link" %> en busca de un amigo</p>
+            <% else %>
+            <p>Nuevo en Mascotas? <%= link_to 'Registrate', new_user_registration_path, class:"nav-link" %>
+              <br/>
+              Si ya tienes cuenta <%= link_to 'Ingresa', new_user_session_path, :class => 'nav-link' %>
+            </p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script type="text/javascript">
+      $(".nav-link").click(function(e) {
+        if ($( this ).hasClass('dropdown-toggle')) {return;};
+        $( this ).children('i').toggleClass($( this ).children().attr('class'));
+        $( this ).children('i').addClass('fa fa-spinner fa-spin');
+      });
+      $(".navbar-brand").click(function(e) {
+        $( this ).children('i').toggleClass($( this ).children().attr('class'));
+        $( this ).children('i').addClass('fa fa-refresh fa-spin');
+      });
+    </script>
+  </body>
 </html>

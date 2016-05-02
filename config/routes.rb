@@ -1,4 +1,22 @@
 Rails.application.routes.draw do
+  devise_for :users,
+    controllers: { sessions: "users/sessions", registrations: 'users/registrations',
+                   confirmations: "users/confirmations", passwords: 'users/passwords',
+                   omniauth_callbacks: 'omniauth_callbacks'}, 
+    path: "/", 
+    path_names: { sign_in: 'ingresar', password: 'contraseña', sign_out: 'salir',
+                  registration: 'registrarme', sign_up: '/', confirmation: 'confirmacion'}
+
+  devise_scope :user do
+    get 'contraseña/nueva' => 'users/passwords#new',  as: :new_password
+    post 'contraseña/nueva' => 'users/passwords#create', as: :password
+    #get 'contraseña/editar/' => 'users/passwords#edit', via: [:get], as: :edit_password
+    #match 'contraseña/editar' => 'users/passwords#update', via: [:put, :patch]
+    get 'usuario/editar' => 'users/registrations#edit', as: :edit_user
+    match 'usuario/editar' => 'users/registrations#update', via: [:put, :patch], as: :update_user
+    get 'usuario/' => 'user#index', as: :user
+  end
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
