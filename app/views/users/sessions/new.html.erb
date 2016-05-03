@@ -50,10 +50,11 @@
                       <%= notice %>
                     </div>
                     <% end %>
-                    <% if alert or f.error_notification %>
+                    <% if alert %>
                     <div class="row">
                       <div class="alert alert-warning" role="alert">
-                        <%= f.error_notification %>
+                        <strong class="warning"></strong>
+                        <%= alert %>
                       </div>
                     </div>
                     <% end %>

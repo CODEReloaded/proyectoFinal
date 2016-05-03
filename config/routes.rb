@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     get 'usuario/editar' => 'users/registrations#edit', as: :edit_user
     match 'usuario/editar' => 'users/registrations#update', via: [:put, :patch], as: :update_user
     get 'usuario/' => 'user#index', as: :user
+    get 'confirmacion' => 'users/confirmations#new', as: :new_confirmation
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

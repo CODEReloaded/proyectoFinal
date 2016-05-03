@@ -40,7 +40,7 @@ gem "font-awesome-rails" , '~> 4.5.0.1'
 
 # gem for bootstrap.js
 source 'https://rails-assets.org' do
-  gem 'rails-assets-tether', '>= 1.1.0'
+  gem 'rails-assets-tether', '~> 1.1.1'
 end
 
 # Form builders

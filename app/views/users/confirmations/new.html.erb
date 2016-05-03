@@ -1,16 +1,86 @@
-<h2>Resend confirmation instructions</h2>
+	  <nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
+      		<!-- Brand and toggle get grouped for better mobile display -->
+       	<div clas="container">
+          <a class="navbar-brand" href="">
+            <i class="fa fa-rocket fa-4"></i>
+            <div class="content-hidden">Mascotas</div>
+          </a>
+          <ul class="nav navbar-nav collapsed pull-xs-right">
+          	<li class="nav-item">
+              <%= link_to '#', :class => 'nav-link' do%>
+              	<%= fa_icon "home" %> <div class="content-hidden">Inicio</div>
+              <% end %>
+          	</li>
+          	<li class="nav-item">
+              <%= link_to new_user_session_path, :class => 'nav-link' do%>
+              	<%= fa_icon "sign-in" %> <div class="content-hidden">Ingresa</div>
+              <% end %>
+          	</li>
+          
+          	<li class="nav-item">
+              <%= link_to new_user_registration_path, class:"nav-link" do %>
+              	<%= fa_icon "pencil-square-o" %> <div class="content-hidden">Registrate</div>
+              <% end %>
+          	</li>
+          </ul>
+      	</div><!-- bs-example-navbar-collapse-1 -->
+      </nav>
 
-<%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
-  <%= f.full_error :confirmation_token %>
+      <div id="wrapper">
+    	<!-- Page Content -->
+      	<div id="page-content-wrapper">
+          <div class="container">
+          	<div class="row">
+              <div class="col-sm-offset-2 col-md-offset-3 col-lg-offset-4 col-xs-12 col-sm-8 col-md-6 col-lg-4">
+              	<div class="omb_login">
+              	  <h3 class="omb_authTitle" style="text-align:center">Reenviar instrucciones de confirmación</h3>
+              	  <div class="row omb_socialButtons">
+              	  	<%= render "users/shared/social_links" %>
+              	  </div>
+              	  <div class="row omb_loginOr">
+              	  	<div class="col-xs-12">
+                	  <hr class="omb_hrOr"/>
+                	  <span class="omb_spanOr">o bien</span>
+              		</div>
+            	  </div>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-  </div>
+                  <%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+                    <% if notice %>
+                    <div class="alert alert-success" role="alert">
+                      <%= notice %>
+                    </div>
+                    <% end %>
+                    <% if alert or f.error_notification %>
+                    <div class="row">
+                      <div class="alert alert-warning" role="alert">
+                        <strong class="warning"></strong>
+                        <%= alert %>
+                        <%= f.error_notification %>
+                      	<%= f.full_error :confirmation_token %>
+                      </div>
+                    </div>
+                    <% end %>
+               	  	<div class="form-inputs">
+               	  	  <div class="form-group">
+	               	  	  <%= f.input :email, required: true, autofocus: true, input_html: { class:'form-control' } %>
+  	               	  </div>
+               	  	</div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Resend confirmation instructions" %>
-  </div>
-<% end %>
+               	  	<div class="form-actions">
+               	  	  <%= f.button :submit, "Reenviarme confirmación", class: 'btn btn-primary btn-block' %>
+               	  	</div>
+               	  <% end %>
 
-<%= render "users/shared/links" %>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <p class="omb_forgotPwd">
+                        <%= render "users/shared/links" %>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          	</div>
+        	</div>
+      	</div><!-- /#page-content-wrapper -->
+      </div><!-- /#wrapper -->

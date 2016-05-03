@@ -7,6 +7,6 @@ es-MX:
       mark: '*'
       # You can uncomment the line below if you need to overwrite the whole required html.
       # When using html, text and mark won't be used.
-      html: '<abbr title="required">*</abbr>'
+      html: '<abbr data-toggle="tooltip" data-placement="top" title="Campo obligatorio">* </abbr>'
     error_notification:
-      default_message: "Por favor verifica los problemas debajo:"
+      default_message: "Los siguientes problemas evitaron que se realizara la acción:"
