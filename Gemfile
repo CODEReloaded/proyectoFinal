@@ -72,6 +72,7 @@ gem 'kaminari', '~> 0.16.3'
 
 # pet's photo
 gem 'carrierwave'
+#gem 'carrierwave_postgresql' checar esta gema porque dice Yorche
 
 # Autorization
 gem 'pundit', '~> 1.1'

@@ -1,0 +1,76 @@
+  <nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div clas="container">
+      <a class="navbar-brand" href="">
+              <i class="fa fa-rocket fa-4"></i>
+              <div class="content-hidden">Mascotas</div>
+            </a>
+            <ul class="nav navbar-nav collapsed pull-xs-right">
+              <li class="nav-item active">
+          <%= link_to user_path, :class => 'nav-link' do%>
+                  <%= fa_icon "home"%> <div class="content-hidden">Inicio</div>
+                  <% end %>
+               </li>
+              <li class="nav-item ">
+                  <%= link_to edit_user_path, class:"nav-link" do %>
+                  <%= fa_icon "pencil" %> <div class="content-hidden">Editar Cuenta</div>
+                  <% end %>
+              </li>
+              <li class="nav-item">
+                  <%= link_to destroy_user_session_path, method: 'delete', class:"nav-link"   do %>
+                  <%= fa_icon "sign-out" %> <div class="content-hidden">Salir</div>
+                  <% end %>
+              </li>
+            </ul>
+        </div><!-- bs-example-navbar-collapse-1 -->
+    </nav>
+    <br><br> <!-- Agregar espacio entre el header y body--> 
+    <nav>
+      <ul class="pager">
+        <li><%= link_to '« Regresar', pets_path %></li>          
+      </ul>
+    </nav>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <h2 style="text-align:center"><strong><%= @pet.name %></strong></h2>  
+</p>
+
+<p style="text-align:center">
+  <strong >Edad: <%= @pet.age %></strong>  
+</p>
+
+<p style="text-align:center">
+  <strong>Especie: <%= @pet.specie %></strong>  
+</p>
+
+<p style="text-align:center">
+  <strong>Sexo: <%= @pet.sex %></strong>  
+</p>
+
+<p style="text-align:center">
+  <strong>Raza: <%= @pet.race %></strong>  
+</p>
+
+<p style="text-align:center">
+  <strong>Tamaño: <%= @pet.height %></strong>  
+</p>
+
+<p style="text-align:center">
+  <strong>Esterilización: <%= @pet.sterilization %></strong>  
+</p>
+
+<p style="text-align:center">
+  <strong>Adoptado: <%= @pet.adpted %></strong>  
+</p>
+
+<p style="text-align:center">
+  <strong>Descripción: <%= @pet.description %></strong>  
+</p>
+
+    <nav>
+      <ul class="pager">
+        <li><%= link_to 'Editar', edit_pet_path(@pet) %> </li>          
+      </ul>
+    </nav>
