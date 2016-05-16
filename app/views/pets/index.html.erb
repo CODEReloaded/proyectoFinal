@@ -39,7 +39,10 @@
               <hr class="post">
               <h2 class="post-name"><%= pet.name %></h2>
               <p class="message"><%= pet.specie %>: <%= pet.race %></p>              
-              <p class="message"><%= pet.description %></p>
+              <p class="message"><%= pet.description %></p>                             
+              <p class="message"><%=image_tag pet.imagen.thumb.url %></p>  
+              <!--<p class="message"><%=image_tag(pet.imagen.url) %></p>--> 
+
               <p><%= link_to 'Ver publicación »', pet, class:"btn btn-primary" %></p>
             </div>
           <% end %>

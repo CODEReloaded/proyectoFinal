@@ -244,6 +244,7 @@ GEM
       uber (~> 0.0.15)
     responders (2.2.0)
       railties (>= 4.2.0, < 5.1)
+    rmagick (2.15.4)
     ruby-graphviz (1.2.2)
     safe_yaml (1.0.4)
     sass (3.4.22)
@@ -329,6 +330,7 @@ DEPENDENCIES
   rails_12factor
   rails_admin (~> 0.8.1)
   reform (~> 2.1)
+  rmagick (~> 2.15, >= 2.15.4)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   simple_form (~> 3.2.0)
