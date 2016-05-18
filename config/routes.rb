@@ -1,6 +1,7 @@
-Rails.application.routes.draw do
+Rails.application.routes.draw do  
+  
   resources :pets,
-    path: 'mascotas',
+    path: 'usuario/mascotas',
     path_names: { new: "nueva", edit: "editar"} 
 
   devise_for :users,

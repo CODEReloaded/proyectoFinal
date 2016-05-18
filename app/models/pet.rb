@@ -1,5 +1,6 @@
 class Pet < ActiveRecord::Base
 
+	belongs_to :user
 	validates :name, :age, :race, :height, :specie, :imagen , presence: true
 	validates :sex, presence: { message: "Si es Macho o Hembra" }
 	validates :description, presence: { message: "Debe ser algo descriptivo" }
