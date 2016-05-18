@@ -29,14 +29,27 @@
           </ul>
         </div><!-- bs-example-navbar-collapse-1 -->
       </nav>
+    <br><br> <!-- Agregar espacio entre el header y body--> 
+
+    <nav>
+      <ul class="pager">
+        <li><%= link_to 'Nueva Mascota »', new_pet_path %></li>          
+      </ul>
+    </nav>
 
       <div id="wrapper">
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-          <div class="container">
+        <div class="row">
+          <% @pets.each do |pet| %>
+            <div class="col-sm-6 col-md-4" style="margin-top:20px;">
+              <hr class="post">
+              <h2 class="post-name"><%= pet.name %></h2>
+              <p class="message"><%= pet.specie %>: <%= pet.race %></p>              
+              <p class="message"><%= pet.description %></p>                             
+              <p class="message"><%=image_tag pet.imagen.thumb.url %></p>  
+              <!--<p class="message"><%=image_tag(pet.imagen.url) %></p>--> 
 
-            Bienvenido XD
-
-          </div><!-- /#page-content-wrapper -->
-        </div><!-- /#wrapper -->
-      </div>
+              <p><%= link_to 'Ver publicación »', pet, class:"btn btn-primary" %></p>
+            </div>
+          <% end %>
+        </div>        
+      </div><!-- /#wrapper -->  

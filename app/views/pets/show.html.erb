@@ -29,14 +29,53 @@
           </ul>
         </div><!-- bs-example-navbar-collapse-1 -->
       </nav>
+    <br><br> <!-- Agregar espacio entre el header y body--> 
+    <nav>
+      <ul class="pager">
+        <li><%= link_to '« Regresar', pets_path %></li>          
+      </ul>
+    </nav>
 
-      <div id="wrapper">
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-          <div class="container">
+<p id="notice"><%= notice %></p>
 
-            Bienvenido XD
+<p>
+  <h2 style="text-align:center"><strong><%= @pet.name %></strong></h2>  
+</p>
 
-          </div><!-- /#page-content-wrapper -->
-        </div><!-- /#wrapper -->
-      </div>
+<p style="text-align:center">
+  <strong >Edad: <%= @pet.age %></strong>  
+</p>
+
+<p style="text-align:center">
+  <strong>Especie: <%= @pet.specie %></strong>  
+</p>
+
+<p style="text-align:center">
+  <strong>Sexo: <%= @pet.sex %></strong>  
+</p>
+
+<p style="text-align:center">
+  <strong>Raza: <%= @pet.race %></strong>  
+</p>
+
+<p style="text-align:center">
+  <strong>Tamaño: <%= @pet.height %></strong>  
+</p>
+
+<p style="text-align:center">
+  <strong>Esterilización: <%= @pet.sterilization %></strong>  
+</p>
+
+<p style="text-align:center">
+  <strong>Adoptado: <%= @pet.adpted %></strong>  
+</p>
+
+<p style="text-align:center">
+  <strong>Descripción: <%= @pet.description %></strong>  
+</p>
+
+    <nav>
+      <ul class="pager">
+        <li><%= link_to 'Editar', edit_pet_path(@pet) %> </li>          
+      </ul>
+    </nav>

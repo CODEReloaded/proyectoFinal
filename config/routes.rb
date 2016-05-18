@@ -1,4 +1,9 @@
-Rails.application.routes.draw do
+Rails.application.routes.draw do  
+  
+  resources :pets,
+    path: 'usuario/mascotas',
+    path_names: { new: "nueva", edit: "editar"} 
+
   devise_for :users,
     controllers: { sessions: "users/sessions", registrations: 'users/registrations',
                    confirmations: "users/confirmations", passwords: 'users/passwords',
@@ -17,7 +22,7 @@ Rails.application.routes.draw do
     get 'usuario/' => 'user#index', as: :user
     get 'confirmacion' => 'users/confirmations#new', as: :new_confirmation
   end
-  
+    
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -65,6 +65,8 @@ gem 'kaminari', '~> 0.16.3'
 
 # pet's photo
 gem 'carrierwave'
+gem 'rmagick', '~> 2.15', '>= 2.15.4'
+#gem 'carrierwave_postgresql'
 
 # Autorization
 gem 'pundit', '~> 1.1'

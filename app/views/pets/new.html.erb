@@ -29,14 +29,10 @@
           </ul>
         </div><!-- bs-example-navbar-collapse-1 -->
       </nav>
-
-      <div id="wrapper">
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-          <div class="container">
-
-            Bienvenido XD
-
-          </div><!-- /#page-content-wrapper -->
-        </div><!-- /#wrapper -->
-      </div>
+    <br><br> <!-- Agregar espacio entre el header y body-->	
+    <nav>
+      <ul class="pager">
+        <li><%= link_to '« Regresar', pets_path %></li>          
+      </ul>
+    </nav>
+	<%= render 'form' %>              					  
