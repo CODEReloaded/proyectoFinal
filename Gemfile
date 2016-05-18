@@ -46,13 +46,9 @@ end
 # Form builders
 gem 'simple_form', '~> 3.2.0'
 gem 'cocoon', '~> 1.2.8'
-gem 'reform', '~> 2.1'
 
 # Enums for (radio, checkbox) 'buttons' in simple_form
 gem 'enumerize'
-
-# Admin gems
-gem 'rails_admin', '~> 0.8.1'
 
 # Translations
 gem 'rails-i18n', '~> 4.0.0'
@@ -67,9 +63,6 @@ gem 'omniauth-facebook'
 # Pagination
 gem 'kaminari', '~> 0.16.3'
 
-# Calendars
-#gem "simple_calendar", "~> 2.0"
-
 # pet's photo
 gem 'carrierwave'
 
@@ -83,12 +76,17 @@ gem 'friendly_id', '~> 5.1'
 # geolocation
 gem 'geocoder', '~> 1.3.4'
 gem 'geokit', '~> 1.10'
+gem 'geokit-rails'
+#gem 'gmaps4rails'
 
-# validations, model validations for simple_form
-gem 'validates_formatting_of'
+# phone validation
+gem 'phonelib'
 
 # soft deleting
 gem 'paranoia', '~> 2.1.5'
+
+# Social actions, for "I'm interested in this pet"
+gem "acts_as_follower"
 
 # Social events (comment, share)
 gem 'acts_as_commentable_with_threading'
@@ -105,6 +103,10 @@ gem "rails-erd"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  # To generate random objects for development environment
+  gem 'ffaker', '~> 2.2'
+  # To generate random objects for production environment
+  gem 'factory_girl', '~> 4.7'
 end
 
 group :development do

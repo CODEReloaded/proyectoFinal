@@ -37,6 +37,9 @@ ActiveRecord::Schema.define(version: 20160502030610) do
     t.string   "first_surname"
     t.string   "second_surname"
     t.string   "phone_number"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "address"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

@@ -1,6 +1,6 @@
-	  <nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
-      		<!-- Brand and toggle get grouped for better mobile display -->
-       	<div clas="container">
+	    <nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div clas="container">
           <a class="navbar-brand" href="">
             <i class="fa fa-rocket fa-4"></i>
             <div class="content-hidden">Mascotas</div>
@@ -24,7 +24,7 @@
           	</li>
           </ul>
       	</div><!-- bs-example-navbar-collapse-1 -->
-      </nav>
+      </nav><!-- End of nav -->
 
       <div id="wrapper">
     	<!-- Page Content -->
@@ -36,13 +36,13 @@
                	  <h3 class="omb_authTitle" style="text-align:center">Registro</h3>
                   <div class="row omb_socialButtons">
                     <%= render "users/shared/social_links" %>
-                  </div>
+                  </div><!-- End social login links -->
                   <div class="row omb_loginOr">
                     <div class="col-xs-12">
-                     <hr class="omb_hrOr"/>
-                     <span class="omb_spanOr">o bien</span>
+                      <hr class="omb_hrOr"/>
+                      <span class="omb_spanOr">o bien</span>
                     </div>
-                  </div>
+                  </div><!-- End form header -->
               		<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
                   	<% if alert or f.error_notification %>
                   	<div class="alert alert-warning" role="alert">
@@ -66,7 +66,10 @@
                         <%= f.input :second_surname, required: true, autofocus: (resource.errors.include?(:second_surname) ? true : false ), input_html: { class:'form-control' } %>
                       </div>
                       <div class="form-group">
-                        <%= f.input :phone_number, required: true, autofocus: (resource.errors.include?(:phone_number) ? true : false ), input_html: { class:'form-control', placeholder: '1234-5678 ó 55-1234-5678' }, hint: 'El telefono sirve para que otros usuarios se comuniquen contigo ' %>
+                        <%= f.input :phone_number, required: true, autofocus: (resource.errors.include?(:phone_number) ? true : false ), input_html: { class:'form-control', placeholder: '(+)52 1 (10 últimos digítos de tu celular)' }, hint: 'El telefono sirve para que otros usuarios se comuniquen contigo ' %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.input :phone_number, required: true, autofocus: (resource.errors.include?(:phone_number) ? true : false ), input_html: { class:'form-control', placeholder: '521(10 últimos digítos de tu celular)' }, hint: 'El telefono sirve para que otros usuarios se comuniquen contigo ' %>
                       </div>
                   	  <div class="form-group">
                   	  	<%= f.input :password, required: true, hint: ("#{@minimum_password_length} caracteres minimo " if @minimum_password_length), autofocus: ((resource.errors.include?(:password_confirmation) or resource.errors.include?(:password)) ? true : false ), input_html: { class:'form-control' } %>

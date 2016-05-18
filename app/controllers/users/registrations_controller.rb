@@ -91,13 +91,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # If you have extra params to permit, append them to the sanitizer.
     def configure_sign_up_params
       devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:email, :given_name, :first_surname, 
-        :second_surname, :phone_number, :password, :password_confirmation) }
+        :second_surname, :phone_number, :address, :password, :password_confirmation) }
     end
 
   # If you have extra params to permit, append them to the sanitizer.
     def configure_account_update_params
       devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:email, :given_name, :first_surname, 
-        :second_surname, :phone_number, :password, :password_confirmation, :current_password) }
+        :second_surname, :phone_number, :address, :password, :password_confirmation, :current_password) }
     end
 
   # The path used after sign up.
