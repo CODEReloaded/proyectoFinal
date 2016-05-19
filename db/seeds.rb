@@ -10,3 +10,16 @@ user = User.new(email: 'hyaoki123@gmail.com', password: 'password1', given_name:
 	address: 'Gabriel Ramos Millan 6, Nativitas, 03500 Ciudad de México, D.F.')
 user.skip_confirmation!
 user.save!
+
+count = 0
+while count < 2
+  user = User.new(email: FFaker::Internet.free_email, password: 'password', 
+  	given_name: FFaker::NameMX.name, first_surname: FFaker::NameMX.last_name, 
+  	second_surname: FFaker::NameMX.last_name, 
+  	phone_number: FFaker::PhoneNumberMX.international_mobile_phone_number, 
+  	latitude: FFaker::Geolocation.lat, longitude: FFaker::Geolocation.lng)
+  user.skip_confirmation!
+  user.save!
+end
+
+# user = User.new(email: FFaker::Internet.free_email, password: 'password', given_name: FFaker::NameMX.name, first_surname: FFaker::NameMX.last_name,  second_surname: FFaker::NameMX.last_name, phone_number: FFaker::PhoneNumberMX.international_mobile_phone_number, latitude: FFaker::Geolocation.lat, longitude: FFaker::Geolocation.lng)

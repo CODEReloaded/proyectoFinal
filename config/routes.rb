@@ -1,5 +1,7 @@
 Rails.application.routes.draw do  
   
+  root 'pets#index'
+
   resources :pets,
     path: 'usuario/mascotas',
     path_names: { new: "nueva", edit: "editar"} 

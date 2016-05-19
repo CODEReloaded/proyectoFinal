@@ -9,19 +9,24 @@ class User < ActiveRecord::Base
          omniauth_providers: [:facebook]
 
   # Uncomment and change for production environment
-  # validates :given_name, :first_surname, :second_surname, :address, presence: true
-  validates :given_name, :first_surname, :second_surname, presence: true
+  validates :given_name, :first_surname, :second_surname, :address, presence: true
+  # validates :given_name, :first_surname, :second_surname, presence: true
 
   # Validating mobile phone numbers accepts in Mexico
   validates :phone_number, phone: { possible: true, types: [:mobile] }
 
   # Uncomment this for production
-  # geocoded_by :address
-  # after_validation :geocode
+  # geocoded_by :ip_address
+  # reverse_geocoded_by :latitude, :longitude
+  # after_validation :geocode :reverse_geocode 
 
-  #This is for development environment, comment if your are in production
-  reverse_geocoded_by :latitude, :longitude
-  after_validation :reverse_geocode 
+  # This is for development environment, comment if your are in production
+  geocoded_by :address
+  after_validation :geocode
+
+  # This is for database creation
+  # reverse_geocoded_by :latitude, :longitude
+  # after_validation :reverse_geocode 
 
   # This is for fastness to find other users
   # maybe it will be moved to Pets model

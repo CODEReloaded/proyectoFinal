@@ -6,12 +6,12 @@
             <div class="content-hidden">Mascotas</div>
           </a>
           <ul class="nav navbar-nav collapsed pull-xs-right">
-            <li class="nav-item active">
+            <li class="nav-item">
               <%= link_to user_path, :class => 'nav-link' do%>
                 <%= fa_icon "home"%> <div class="content-hidden">Inicio</div>
               <% end %>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item active">
               <%= link_to new_pet_path, class:"nav-link" do %>
                 <%= fa_icon "pencil" %> <div class="content-hidden">Publicar</div>
               <% end %>

@@ -13,7 +13,7 @@
             </li>
             <li class="nav-item ">
               <%= link_to new_pet_path, class:"nav-link" do %>
-                <%= fa_icon "pencil" %> <div class="content-hidden">Publicar</div>
+                <%= fa_icon "pencil-square" %> <div class="content-hidden">Publicar</div>
               <% end %>
             </li>
             <li class="nav-item ">
@@ -35,7 +35,26 @@
         <div id="page-content-wrapper">
           <div class="container">
 
+            <div class="alert alert-success" role="alert" hidden>
+              <%= notice %>
+            </div>
+
             Bienvenido XD
+
+            <div class="row">
+              <% @pets.each do |pet| %>
+                <div class="col-sm-6 col-md-4" style="margin-top:20px;">
+                  <hr class="post">
+                  <h2 class="post-name"><%= pet.name %></h2>
+                  <p class="message"><%= pet.specie %>: <%= pet.race %></p>              
+                  <p class="message"><%= pet.description %></p>                             
+                  <p class="message"><%=image_tag pet.imagen.thumb.url %></p>  
+                  <!--<p class="message"><%=image_tag(pet.imagen.url) %></p>--> 
+
+                  <p><%= link_to 'Ver publicación »', pet, class:"btn btn-primary" %></p>
+                </div>
+              <% end %>
+            </div>
 
           </div><!-- /#page-content-wrapper -->
         </div><!-- /#wrapper -->

@@ -1,9 +1,19 @@
 class PetsController < ApplicationController
   before_action :set_pet, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :log_in?, only: [:index]
+
+  # Check if exist a logged in user and redirect to user index page
+  def log_in?
+    if current_user
+      redirect_to user_path
+    end
+  end
 
   # GET /pets
   # GET /pets.json
   def index
+    @title = 'Mascotas'
     @pets = Pet.all
   end
 
@@ -25,10 +35,10 @@ class PetsController < ApplicationController
   # POST /pets.json
   def create
     @pet = Pet.new(pet_params)
-
+    @pet.user_id = current_user.id
     respond_to do |format|
       if @pet.save
-        format.html { redirect_to @pet, notice: 'Pet was successfully created.' }
+        format.html { redirect_to @pet, notice: 'Mascota fue creada exitosamente.' }
         format.json { render :show, status: :created, location: @pet }
       else
         format.html { render :new }

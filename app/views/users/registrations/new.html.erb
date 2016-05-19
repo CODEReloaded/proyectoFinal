@@ -66,10 +66,10 @@
                         <%= f.input :second_surname, required: true, autofocus: (resource.errors.include?(:second_surname) ? true : false ), input_html: { class:'form-control' } %>
                       </div>
                       <div class="form-group">
-                        <%= f.input :phone_number, required: true, autofocus: (resource.errors.include?(:phone_number) ? true : false ), input_html: { class:'form-control', placeholder: '(+)52 1 (10 últimos digítos de tu celular)' }, hint: 'El telefono sirve para que otros usuarios se comuniquen contigo ' %>
+                        <%= f.input :phone_number, required: true, autofocus: (resource.errors.include?(:phone_number) ? true : false ), input_html: { class:'form-control', placeholder: '(+)52 1 (10 digítos)' }, hint: '(+)52 1 (10 últimos digítos de tu celular)  ' %>
                       </div>
                       <div class="form-group">
-                        <%= f.input :phone_number, required: true, autofocus: (resource.errors.include?(:phone_number) ? true : false ), input_html: { class:'form-control', placeholder: '521(10 últimos digítos de tu celular)' }, hint: 'El telefono sirve para que otros usuarios se comuniquen contigo ' %>
+                        <%= f.input :address, required: true, autofocus: (resource.errors.include?(:address) ? true : false ), input_html: { class:'form-control', placeholder: 'Ej. Cerrada San Jacinto 5, Mirador, Tlalpan' }, hint: 'Calle número, Colonia, Municipio, Estado ' %>
                       </div>
                   	  <div class="form-group">
                   	  	<%= f.input :password, required: true, hint: ("#{@minimum_password_length} caracteres minimo " if @minimum_password_length), autofocus: ((resource.errors.include?(:password_confirmation) or resource.errors.include?(:password)) ? true : false ), input_html: { class:'form-control' } %>

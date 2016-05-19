@@ -301,12 +301,7 @@ DEPENDENCIES
   rails-erd
   rails-i18n (~> 4.0.0)
   rails_12factor
-<<<<<<< HEAD
-=======
-  rails_admin (~> 0.8.1)
-  reform (~> 2.1)
   rmagick (~> 2.15, >= 2.15.4)
->>>>>>> origin/CRUDMascotas
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   simple_form (~> 3.2.0)
