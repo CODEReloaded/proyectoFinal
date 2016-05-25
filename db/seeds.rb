@@ -11,15 +11,18 @@ user = User.new(email: 'hyaoki123@gmail.com', password: 'password1', given_name:
 user.skip_confirmation!
 user.save!
 
+
 count = 0
-while count < 2
+while count < 3
+  r = Random.rand(10...5060) 
   user = User.new(email: FFaker::Internet.free_email, password: 'password', 
   	given_name: FFaker::NameMX.name, first_surname: FFaker::NameMX.last_name, 
   	second_surname: FFaker::NameMX.last_name, 
   	phone_number: FFaker::PhoneNumberMX.international_mobile_phone_number, 
-  	latitude: FFaker::Geolocation.lat, longitude: FFaker::Geolocation.lng)
+  	address: 'Calzada de Tlalpan '+ r.to_s + ', Ciudad de México' )
   user.skip_confirmation!
   user.save!
+  count = count + 1
 end
 
 # user = User.new(email: FFaker::Internet.free_email, password: 'password', given_name: FFaker::NameMX.name, first_surname: FFaker::NameMX.last_name,  second_surname: FFaker::NameMX.last_name, phone_number: FFaker::PhoneNumberMX.international_mobile_phone_number, latitude: FFaker::Geolocation.lat, longitude: FFaker::Geolocation.lng)

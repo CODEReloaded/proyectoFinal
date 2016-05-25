@@ -11,12 +11,16 @@
               	<%= fa_icon "home" %> <div class="content-hidden">Inicio</div>
               <% end %>
           	</li>
+            <li class="nav-item">
+              <%= link_to search_pet_path, :class => 'nav-link' do%>
+                <%= fa_icon "search"%> <div class="content-hidden">Buscar</div>
+              <% end %>
+            </li>
           	<li class="nav-item active">
               <%= link_to new_user_session_path, :class => 'nav-link' do%>
               	<%= fa_icon "sign-in" %> <div class="content-hidden">Ingresa</div>
               <% end %>
           	</li>
-          
           	<li class="nav-item">
               <%= link_to new_user_registration_path, class:"nav-link" do %>
               	<%= fa_icon "pencil-square-o" %> <div class="content-hidden">Registrate</div>

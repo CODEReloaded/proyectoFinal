@@ -1,6 +1,6 @@
 class PetsController < ApplicationController
   before_action :set_pet, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :search]
   before_action :log_in?, only: [:index]
 
   # Check if exist a logged in user and redirect to user index page
@@ -24,7 +24,7 @@ class PetsController < ApplicationController
 
   # GET /pets/new
   def new
-    @pet = Pet.new
+    @pet = Pet.new(name: FFaker::Name.name, description: FFaker::Lorem.paragraph)
   end
 
   # GET /pets/1/edit
@@ -36,6 +36,8 @@ class PetsController < ApplicationController
   def create
     @pet = Pet.new(pet_params)
     @pet.user_id = current_user.id
+    @pet.latitude = current_user.latitude
+    @pet.longitude = current_user.longitude
     respond_to do |format|
       if @pet.save
         format.html { redirect_to @pet, notice: 'Mascota fue creada exitosamente.' }
@@ -45,6 +47,12 @@ class PetsController < ApplicationController
         format.json { render json: @pet.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # Method to find pets, receive a parameter
+  def search
+    @user = User.find(2)
+    @pets = Pet.where.not(user_id: 2).within(15, :origin=>@user)
   end
 
   # PATCH/PUT /pets/1
@@ -74,7 +82,7 @@ class PetsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_pet
-      @pet = Pet.find(params[:id])
+      @pet = Pet.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

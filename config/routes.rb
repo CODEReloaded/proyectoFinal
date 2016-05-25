@@ -2,9 +2,11 @@ Rails.application.routes.draw do
   
   root 'pets#index'
 
+  get 'mascotas/buscar' => 'pets#search', as: :search_pet
+
   resources :pets,
-    path: 'usuario/mascotas',
-    path_names: { new: "nueva", edit: "editar"} 
+    path: 'mascotas',
+    path_names: { new: "nueva", edit: "editar"}
 
   devise_for :users,
     controllers: { sessions: "users/sessions", registrations: 'users/registrations',

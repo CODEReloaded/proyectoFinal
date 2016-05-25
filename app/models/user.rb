@@ -17,20 +17,15 @@ class User < ActiveRecord::Base
 
   # Uncomment this for production
   # geocoded_by :ip_address
-  # reverse_geocoded_by :latitude, :longitude
-  # after_validation :geocode :reverse_geocode 
 
   # This is for development environment, comment if your are in production
-  geocoded_by :address
-  after_validation :geocode
-
-  # This is for database creation
-  # reverse_geocoded_by :latitude, :longitude
-  # after_validation :reverse_geocode 
+  # geocoded_by :address
+  # after_validation :geocode
 
   # This is for fastness to find other users
-  # maybe it will be moved to Pets model
-  acts_as_mappable :default_units => :kms,
+  acts_as_mappable :auto_geocode => { :field=>:address, 
+          :error_message=>'Direccion invalida, no se puede encontrar la longitud y latitud'},
+                   :default_units => :kms,
                    :default_formula => :sphere,
                    :distance_field_name => :distance,
                    :lat_column_name => :latitude,

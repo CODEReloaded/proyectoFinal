@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20160517181224) do
     t.string   "specie"
     t.string   "sex"
     t.string   "race"
-    t.float    "height"
+    t.string    "height"
     t.boolean  "sterilization"
     t.boolean  "adpted"
     t.text     "description"
@@ -30,6 +30,9 @@ ActiveRecord::Schema.define(version: 20160517181224) do
     t.datetime "updated_at",    null: false
     t.string   "imagen"
     t.integer  "user_id"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "slug"
   end
 
   add_index "pets", ["user_id"], name: "index_pets_on_user_id", using: :btree

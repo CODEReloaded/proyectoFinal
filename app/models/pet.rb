@@ -1,18 +1,39 @@
 class Pet < ActiveRecord::Base
 
 	extend Enumerize
+	extend FriendlyId
 
 	belongs_to :user
 
-	validates :name, :race, :height, :specie, :imagen, :sex, presence: true
+	friendly_id :slug_candidates, use: :slugged
+
+	validates :name, :race, :height, :specie, :imagen, :sex, :longitude, :latitude, presence: true
 	validates :age, numericality: { greater_than_or_equal_to: 1 }
 	
-	validates :description, presence: { message: "Debe ser algo descriptivo" }
+	validates :description, presence: { message: "Debes dar una descripción de la mascota" }
 
 	enumerize :sex, in: [:macho, :hembra]
+	enumerize :height, in: [:pequeño, :mediano, :grande]
 
 	mount_uploader :imagen, ImageUploader
 	validate :image_size_validation 
+
+	acts_as_mappable :default_units => :kms,
+                   :default_formula => :sphere,
+                   :distance_field_name => :distance,
+                   :lat_column_name => :latitude,
+                   :lng_column_name => :longitude
+
+	def slug_candidates
+      [:name, [:name, :id_for_slug]]
+    end
+
+  	def id_for_slug
+      generated_slug = normalize_friendly_id(name)
+      things = self.class.where('slug LIKE :pattern', pattern: "#{generated_slug}(-[0-9]+)?$")
+      things = things.where.not(id: id) unless new_record?
+      things.count + 1
+  	end
 	
 	private
 	def image_size_validation
