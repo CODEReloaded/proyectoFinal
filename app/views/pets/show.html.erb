@@ -81,7 +81,7 @@
 <p style="text-align:center">
   <strong>No. de Interesados <%= @pet.followers_count %></strong>  
 </p>
-
+<%= notice %>
 
     <nav>
       <ul class="pager">
@@ -91,7 +91,7 @@
          <% else %>
          <% if User.find(current_user.id).following?(@pet) %>
          <%else%>
-         <li><% link_to 'Me gusta', interested_pet_path(@pet) %></li>
+         <li><%= link_to 'Me gusta', interesado_path(id: @pet.id), method: :post %></li>
          <%end%>
          <% end %> 
          <% else %>

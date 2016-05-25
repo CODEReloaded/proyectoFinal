@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :pets,
     path: 'usuario/mascotas',
-    path_names: { new: "nueva", edit: "editar", interested: "interested"} 
+    path_names: { new: "nueva", edit: "editar"} 
 
   devise_for :users,
     controllers: { sessions: "users/sessions", registrations: 'users/registrations',
@@ -15,6 +15,7 @@ Rails.application.routes.draw do
                   registration: 'registrarme', sign_up: '/', confirmation: 'confirmacion'}
 
   devise_scope :user do
+    post 'like' => 'pets#interested', as: :interesado
     get 'contraseña/nueva' => 'users/passwords#new',  as: :new_password
     post 'contraseña/nueva' => 'users/passwords#create', as: :password
     #get 'contraseña/editar/' => 'users/passwords#edit', via: [:get], as: :edit_password

@@ -32,11 +32,11 @@ class PetsController < ApplicationController
   end
 
   def interested
-    pet = Pet.find(@pet.id)
+    pet = Pet.find(params[:id])
     user = User.find(current_user.id)
     user.follow(pet)
-    format.html{ redirect_to @pet, notice: 'mascota fue seleccionada exitosamente' }
-    format.json { render :show, status: :created, location: @pet }
+    notice = "like exitoso"
+    render :show
   end  
 
   # POST /pets
