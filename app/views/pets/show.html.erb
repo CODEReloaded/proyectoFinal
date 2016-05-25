@@ -74,8 +74,29 @@
   <strong>Descripción: <%= @pet.description %></strong>  
 </p>
 
+<p style="text-align:center">
+  <strong>Dueño: <%= User.find(@pet.user_id).given_name %></strong>  
+</p>
+
+<p style="text-align:center">
+  <strong>No. de Interesados <%= @pet.followers_count %></strong>  
+</p>
+<%= notice %>
+
     <nav>
       <ul class="pager">
-        <li><%= link_to 'Editar', edit_pet_path(@pet) %> </li>          
+      <% if user_signed_in? %>
+         <% if current_user.id == @pet.user_id %>
+        <li><%= link_to 'Editar', edit_pet_path(@pet) %> </li>
+         <% else %>
+         <% if User.find(current_user.id).following?(@pet) %>
+         <%else%>
+         <li><%= link_to 'Me gusta', interesado_path(id: @pet.id), method: :post %></li>
+         <%end%>
+         <% end %> 
+         <% else %>
+         <li> Debes registrarte para poder adoptar</li>
+         <% end %>
+
       </ul>
     </nav>

@@ -4,6 +4,8 @@ class Pet < ActiveRecord::Base
 	extend FriendlyId
 
 	belongs_to :user
+    
+    acts_as_followable    
 
 	friendly_id :slug_candidates, use: :slugged
 
