@@ -31,6 +31,14 @@ class PetsController < ApplicationController
   def edit
   end
 
+  def interested
+    pet = Pet.find(@pet.id)
+    user = User.find(current_user.id)
+    user.follow(pet)
+    format.html{ redirect_to @pet, notice: 'mascota fue seleccionada exitosamente' }
+    format.json { render :show, status: :created, location: @pet }
+  end  
+
   # POST /pets
   # POST /pets.json
   def create
@@ -38,6 +46,9 @@ class PetsController < ApplicationController
     @pet.user_id = current_user.id
     respond_to do |format|
       if @pet.save
+        pet = Pet.find(@pet.id)
+        user = User.find(current_user.id)
+        user.follow(pet)
         format.html { redirect_to @pet, notice: 'Mascota fue creada exitosamente.' }
         format.json { render :show, status: :created, location: @pet }
       else

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :pets,
     path: 'usuario/mascotas',
-    path_names: { new: "nueva", edit: "editar"} 
+    path_names: { new: "nueva", edit: "editar", interested: "interested"} 
 
   devise_for :users,
     controllers: { sessions: "users/sessions", registrations: 'users/registrations',

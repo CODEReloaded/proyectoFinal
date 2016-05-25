@@ -3,6 +3,8 @@ class Pet < ActiveRecord::Base
 	extend Enumerize
 
 	belongs_to :user
+    
+    acts_as_followable    
 
 	validates :name, :race, :height, :specie, :imagen, :sex, presence: true
 	validates :age, numericality: { greater_than_or_equal_to: 1 }
