@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20160519203440) do
     t.string   "specie"
     t.string   "sex"
     t.string   "race"
-    t.string    "height"
+    t.string   "height"
     t.boolean  "sterilization"
     t.boolean  "adpted"
     t.text     "description"

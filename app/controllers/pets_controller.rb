@@ -32,9 +32,9 @@ class PetsController < ApplicationController
   end
 
   def interested
-    pet = Pet.find(params[:id])
+    @pet = Pet.find(params[:id])
     user = User.find(current_user.id)
-    user.follow(pet)
+    user.follow(@pet)
     notice = "like exitoso"
     render :show
   end  
