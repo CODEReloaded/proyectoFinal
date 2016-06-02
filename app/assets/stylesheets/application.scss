@@ -126,3 +126,29 @@ strong.warning:before{
   font-family: FontAwesome;
   content: "\f071";
 }
+
+.welcome-user-header {
+  font: 'Open Sans';
+  font-size: 18px;
+  padding: 19px;
+}
+.user-name {
+  color: red;
+  display: inline-block;
+  font-size: 20px;
+}
+
+$font-size: 18px;
+$line-height: 1.5;
+$lines-to-show: 3;
+.message {
+  text-align: justify;
+  padding: 10px 0;
+  display: -webkit-box;
+  width: 100%;
+  height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
+  -webkit-line-clamp: $lines-to-show;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

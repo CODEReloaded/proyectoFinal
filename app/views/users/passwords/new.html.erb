@@ -48,7 +48,7 @@
               		</div>
             	  </div>
 
-                  <%= simple_form_for(resource, as: resource_name, url: password_path, html: { method: :post }) do |f| %>
+                  <%= simple_form_for(resource, as: resource_name, url: password_path(resource), html: { method: :post }) do |f| %>
                     <% if notice %>
                     <div class="alert alert-success" role="alert">
                       <%= notice %>

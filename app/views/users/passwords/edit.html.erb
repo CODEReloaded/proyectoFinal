@@ -1,19 +1,88 @@
-<h2>Change your password</h2>
+    <nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
+          <!-- Brand and toggle get grouped for better mobile display -->
+        <div clas="container">
+          <a class="navbar-brand" href="">
+            <i class="fa fa-rocket fa-4"></i>
+            <div class="content-hidden">Mascotas</div>
+          </a>
+          <ul class="nav navbar-nav collapsed pull-xs-right">
+            <li class="nav-item">
+              <%= link_to '#', :class => 'nav-link' do%>
+                <%= fa_icon "home" %> <div class="content-hidden">Inicio</div>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to search_pet_path, :class => 'nav-link' do%>
+                <%= fa_icon "search"%> <div class="content-hidden">Buscar</div>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to new_user_session_path, :class => 'nav-link' do%>
+                <%= fa_icon "sign-in" %> <div class="content-hidden">Ingresa</div>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to new_user_registration_path, class:"nav-link" do %>
+                <%= fa_icon "pencil-square-o" %> <div class="content-hidden">Registrate</div>
+              <% end %>
+            </li>
+          </ul>
+        </div><!-- bs-example-navbar-collapse-1 -->
+      </nav>
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+      <div id="wrapper">
+      <!-- Page Content -->
+        <div id="page-content-wrapper">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-offset-2 col-md-offset-3 col-lg-offset-4 col-xs-12 col-sm-8 col-md-6 col-lg-4">
+                <div class="omb_login">
+                  <h3 class="omb_authTitle" style="text-align:center">Reestablecer contraseña</h3>
+                  <%= simple_form_for(resource, as: resource_name, url: user_password_path, html: { method: :put }) do |f| %>
+                    <% if notice %>
+                    <div class="alert alert-success" role="alert">
+                      <%= notice %>
+                      <%= f.error_notification %>
+                    </div>
+                    <% end %>
+                    <% if alert or f.error_notification %>
+                    <div class="row">
+                      <div class="alert alert-warning" role="alert">
+                        <strong class="warning"></strong>
+                        <%= alert %>
+                      </div>
+                    </div>
+                    <%= f.full_error :reset_password_token %>
+                    <% end %>
+                    <div class="form-inputs">
+                      <div class="form-group">
+                        <%= f.input :reset_password_token, input_html: { value: resource.reset_password_token}, as: :hidden %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.input :password, label: "Nueva contraseña", required: true, autofocus: true, hint: ("#{@minimum_password_length} caracteres minimo" if @minimum_password_length), input_html: { class: 'form-control' } %>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="form-group">
+                        <%= f.input :password_confirmation, label: "Confirma tu nueva contraseña", required: true, input_html: { class: 'form-control' } %>
+                      </div>
+                    </div>
 
-  <%= f.input :reset_password_token, as: :hidden %>
-  <%= f.full_error :reset_password_token %>
+                    <div class="form-actions">
+                      <%= f.button :submit, "Cambiar contraseña", class: 'btn btn-primary btn-block' %>
+                    </div>
+                  <% end %>
 
-  <div class="form-inputs">
-    <%= f.input :password, label: "New password", required: true, autofocus: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-    <%= f.input :password_confirmation, label: "Confirm your new password", required: true %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <p class="omb_forgotPwd">
+                        <%= render "users/shared/links" %>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /#page-content-wrapper -->
+      </div><!-- /#wrapper -->

@@ -44,19 +44,19 @@
               <%= notice %>
             </div>
 
-            Bienvenido XD
+            <div class="welcome-user-header">
+              <div class="user-name"><%= current_user.given_name%></div> con sesion iniciada
+            </div>
 
             <div class="row">
               <% @pets.each do |pet| %>
                 <div class="col-sm-6 col-md-4" style="margin-top:20px;">
-                  <hr class="post">
+                  <p><center> <%=image_tag pet.imagen.thumb.url %> </center></p>
                   <h2 class="post-name"><%= pet.name %></h2>
-                  <p class="message"><%= pet.specie %>: <%= pet.race %></p>              
-                  <p class="message"><%= pet.description %></p>                             
-                  <p class="message"><%=image_tag pet.imagen.thumb.url %></p>  
-                  <!--<p class="message"><%=image_tag(pet.imagen.url) %></p>--> 
-
+                  <p><%= pet.specie %>: <%= pet.race %></p>
+                  <p class="message"><%= pet.description %></p>                 
                   <p><%= link_to 'Ver publicación »', pet, class:"btn btn-primary" %></p>
+                  <!--<p class="message"><%=image_tag(pet.imagen.url) %></p>--> 
                 </div>
               <% end %>
             </div>
