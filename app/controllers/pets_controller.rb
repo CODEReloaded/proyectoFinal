@@ -50,7 +50,6 @@ class PetsController < ApplicationController
       if @pet.save
         pet = Pet.find(@pet.id)
         user = User.find(current_user.id)
-        user.follow(pet)
         format.html { redirect_to @pet, notice: 'Mascota fue creada exitosamente.' }
         format.json { render :show, status: :created, location: @pet }
       else
@@ -62,8 +61,20 @@ class PetsController < ApplicationController
 
   # Method to find pets, receive a parameter
   def search
-    @user = User.find(2)
-    @pets = Pet.where.not(user_id: 2).within(15, :origin=>@user)
+    @kms = 5
+    if params[:kms]
+      @kms = params[:kms] 
+    end
+    if current_user
+      @pets = Pet.where.not(user_id: current_user.id).within(@kms.to_i, :origin=>[19.3234472,-99.1796417])
+    else
+      @pets = Pet.within(@kms.to_i, :origin=>[19.3234472,-99.1796417])
+      @hash = Gmaps4rails.build_markers(@pets) do |pet, marker|
+        marker.lat pet.latitude
+        marker.lng pet.longitude
+        marker.infowindow '<a href="'+pet_path(pet)+'">'+pet.name+'</a>'
+      end
+    end
   end
 
   # PATCH/PUT /pets/1

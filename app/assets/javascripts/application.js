@@ -14,5 +14,6 @@
 //= require tether
 //= require bootstrap
 //= require jquery_ujs
-//= require cocoon
 //= require turbolinks
+//= require underscore
+//= require gmaps/google
