@@ -46,7 +46,7 @@
 
             Bienvenido XD
 
-            <div class="row">
+            <div class="row">              
               <% @pets.each do |pet| %>
                 <div class="col-sm-6 col-md-4" style="margin-top:20px;">
                   <hr class="post">
@@ -58,9 +58,11 @@
 
                   <p><%= link_to 'Ver publicación »', pet, class:"btn btn-primary" %></p>
                 </div>
-              <% end %>
+              <% end %>              
             </div>
-
+            <center>
+            <%= paginate(@pets) %>
+            </center>
           </div><!-- /#page-content-wrapper -->
         </div><!-- /#wrapper -->
       </div>

@@ -14,7 +14,8 @@ class PetsController < ApplicationController
   # GET /pets.json
   def index
     @title = 'Mascotas'
-    @pets = Pet.all
+    #@pets = Pet.all
+    @pets = Pet.order('created_at DESC').page(params[:page]).per(3)
   end
 
   # GET /pets/1

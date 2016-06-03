@@ -50,5 +50,8 @@
               <p><%= link_to 'Ver publicación »', pet, class:"btn btn-primary" %></p>
             </div>
           <% end %>
-        </div>        
+        </div>              
+        <center>
+        <%= paginate(@pets) %>
+        </center>
       </div><!-- /#wrapper -->  
