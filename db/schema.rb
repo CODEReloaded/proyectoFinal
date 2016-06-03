@@ -39,13 +39,13 @@ ActiveRecord::Schema.define(version: 20160519203440) do
     t.boolean  "sterilization"
     t.boolean  "adpted"
     t.text     "description"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "slug"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.string   "imagen"
     t.integer  "user_id"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.string   "slug"
   end
 
   add_index "pets", ["user_id"], name: "index_pets_on_user_id", using: :btree

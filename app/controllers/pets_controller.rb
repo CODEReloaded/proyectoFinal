@@ -30,6 +30,15 @@ class PetsController < ApplicationController
   # GET /pets/1/edit
   def edit
   end
+  
+  def notInterested
+    @pet = Pet.find(params[:id])
+    user = User.find(current_user.id)
+    user.stop_following(@pet)
+    notice = "dislike exitoso"
+    render :show
+  end  
+
 
   def interested
     @pet = Pet.find(params[:id])

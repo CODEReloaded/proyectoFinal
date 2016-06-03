@@ -17,6 +17,7 @@ Rails.application.routes.draw do
                   registration: 'registrarme', sign_up: '/', confirmation: 'confirmacion'}
 
   devise_scope :user do
+    post 'dislike' => 'pets#notInterested', as: :desinteresado
     post 'like' => 'pets#interested', as: :interesado
     get 'contraseña/nueva' => 'users/passwords#new',  as: :new_password
     post 'contraseña/nueva' => 'users/passwords#create', as: :password
