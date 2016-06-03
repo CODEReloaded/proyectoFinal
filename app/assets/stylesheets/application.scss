@@ -142,7 +142,6 @@ $font-size: 18px;
 $line-height: 1.5;
 $lines-to-show: 3;
 .message {
-  text-align: justify;
   padding: 10px 0;
   display: -webkit-box;
   width: 100%;
@@ -151,6 +150,14 @@ $lines-to-show: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.card-img-top{
+  width: auto;
+  max-height: 200px;
+}
+
+.card-image{
+  height:200px;
 }
 
 /*

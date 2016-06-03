@@ -91,21 +91,14 @@
 
             <% if @pets %>
             <div class="row">
-              <center>
-                <% @pets.each do |pet| %>
-                  <%= link_to pet.name, pet %> <br/>
-                <% end %>
-              </center>
+              <div class="col-sm-offset-1 col-sm-10">
+                <div id="map" style="width:100%; height:450px; background-color: pink"></div>
+              </div>
             </div>
             <% else %>
             No se encontraron amigos con este rango de busqueda
             <% end %>
 
-            <div class="row">
-              <div class="col-sm-offset-1 col-sm-10">
-                <div id="map" style="width:100%; height:450px; background-color: pink"></div>
-              </div>
-            </div>
           </div>
         </div>
       </div><!-- /#wrapper -->  

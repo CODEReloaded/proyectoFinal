@@ -67,6 +67,11 @@ class PetsController < ApplicationController
     end
     if current_user
       @pets = Pet.where.not(user_id: current_user.id).within(@kms.to_i, :origin=>[19.3234472,-99.1796417])
+      @hash = Gmaps4rails.build_markers(@pets) do |pet, marker|
+        marker.lat pet.latitude
+        marker.lng pet.longitude
+        marker.infowindow '<a href="'+pet_path(pet)+'">'+pet.name+'</a>'
+      end
     else
       @pets = Pet.within(@kms.to_i, :origin=>[19.3234472,-99.1796417])
       @hash = Gmaps4rails.build_markers(@pets) do |pet, marker|
