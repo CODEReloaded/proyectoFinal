@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :pets
 
   acts_as_follower
+  acts_as_followable
   
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable,
@@ -19,6 +20,10 @@ class User < ActiveRecord::Base
 
   # Uncomment this for production
   # geocoded_by :ip_address
+  amoeba do
+    enable
+    include_association :pets
+  end
 
   # This is for development environment, comment if your are in production
   # geocoded_by :address

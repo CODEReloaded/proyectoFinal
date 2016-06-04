@@ -3,6 +3,6 @@ class UserController < ApplicationController
 	def index
 		@title = 'Inicio | Mascotas'
 		#@pets = Pet.all
-		@pets = Pet.order(:name).page(params[:page]).per(3)
+		@pets = Pet.order(:adpted).page(params[:page]).per(3)
 	end
 end

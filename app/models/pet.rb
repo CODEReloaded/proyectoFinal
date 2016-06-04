@@ -1,9 +1,9 @@
 class Pet < ActiveRecord::Base
 
+	belongs_to :user
+
 	extend Enumerize
 	extend FriendlyId
-
-	belongs_to :user
     
     acts_as_followable    
 

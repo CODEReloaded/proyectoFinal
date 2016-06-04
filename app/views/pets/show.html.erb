@@ -111,16 +111,37 @@
 </p>
 
 <p style="text-align:center">
-  <strong>No. de Interesados <%= @pet.followers_count %></strong>  
+  <strong>No. de Interesados <%= @pet.followers_count %></strong>    
 </p>
-
     <nav>
       <ul class="pager">
       <% if user_signed_in? %>
         <% if current_user.id == @pet.user_id %>
-          <li><%= link_to 'Editar', edit_pet_path(@pet) %> </li>
+          <li><%= link_to 'Editar', edit_pet_path(@pet) %> </li> 
+          <div id="wrapper">
+          <!-- Page Content -->
+          <div id="page-content-wrapper">
+            <div class="container">
+              <div class="row">
+                <br/>
+                <br/>
+                <h4 class="omb_authTitle" style="text-align:center">Interesados</h4>
+                <% if @pet.followers_count > 0 %>
+                  <div class="row">
+                    <center>
+                      <% @pet.followers.each do |f| %>
+                          <%= f.given_name %> <br/>
+                      <% end %>
+                    </center>
+                  </div>
+                <% else %>
+                    No se encontraron seguidores
+                <% end %>
+                </div>
+            </div>
+          </div><!-- /#wrapper -->          
         <% else %>
-          <% if User.find(current_user.id).following?(@pet) %>
+          <% if User.find(current_user.id).following?(@pet) %>          
             <%else%>
               <li><%= link_to 'Me interesa', interesado_path(id: @pet.id), :method => :post %></li>
             <%end%>
