@@ -39,7 +39,7 @@
       <div id="wrapper">
         <div class="row"> 
           <% @pets.each do |pet| %>
-            <%if pet.adpted == false %>
+            
               <div class="col-sm-6 col-md-4" style="margin-top:20px;">
                 <hr class="post">
                 <h2 class="post-name"><%= pet.name %></h2>
@@ -49,7 +49,7 @@
                 <!--<p class="message"><%=image_tag(pet.imagen.url) %></p>--> 
                 <p><%= link_to 'Ver publicación »', pet, class:"btn btn-primary" %></p>
               </div>
-            <% end %>
+            
           <% end %>
         </div>              
         <center>
