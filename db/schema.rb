@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160519203440) do
+ActiveRecord::Schema.define(version: 20160603145625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,23 @@ ActiveRecord::Schema.define(version: 20160519203440) do
   end
 
   add_index "pets", ["user_id"], name: "index_pets_on_user_id", using: :btree
+
+  create_table "solicituds", force: :cascade do |t|
+    t.string   "nombre"
+    t.string   "ocupacion"
+    t.integer  "edad"
+    t.text     "por_que"
+    t.string   "consideras"
+    t.boolean  "experiencia"
+    t.text     "actividades"
+    t.boolean  "gastos"
+    t.string   "vivienda"
+    t.string   "dormir"
+    t.text     "mudarse"
+    t.boolean  "ajuste"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

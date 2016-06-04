@@ -1,5 +1,8 @@
 class SolicitudsController < ApplicationController
   before_action :set_solicitud, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show, :search]
+  before_action :log_in?, only: [:index]
+
 
   # GET /solicituds
   # GET /solicituds.json

@@ -121,8 +121,10 @@
           <li><%= link_to 'Editar', edit_pet_path(@pet) %> </li>
         <% else %>
           <% if User.find(current_user.id).following?(@pet) %>
-          <li><p>Esta mascota te interesa</p></li>
+          <li><p>Esta mascota te interesa puedes dejar de seguirla o mandar solicitud</p></li>
           <li><%= link_to 'Dejar de seguir', desinteresado_path(id: @pet.id), :method => :post %></li>
+          <li><%= link_to 'Llenar solicitud', new_solicitud_path %></li>
+  
             <%else%>
               <li><%= link_to 'Me interesa', interesado_path(id: @pet.id), :method => :post %></li>
             <%end%>
