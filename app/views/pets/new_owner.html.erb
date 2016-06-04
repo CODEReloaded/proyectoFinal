@@ -1,17 +1,18 @@
-      <nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
+ <nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div clas="container">
           <a class="navbar-brand" href="">
             <i class="fa fa-rocket fa-4"></i>
             <div class="content-hidden">Mascotas</div>
           </a>
+          <% if current_user %>
           <ul class="nav navbar-nav collapsed pull-xs-right">
-            <li class="nav-item active">
+            <li class="nav-item">
               <%= link_to user_path, :class => 'nav-link' do%>
                 <%= fa_icon "home"%> <div class="content-hidden">Inicio</div>
               <% end %>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <%= link_to search_pet_path, :class => 'nav-link' do%>
                 <%= fa_icon "search"%> <div class="content-hidden">Buscar</div>
               <% end %>
@@ -37,35 +38,37 @@
               <% end %>
             </li>
           </ul>
-        </div><!-- bs-example-navbar-collapse-1 -->
+          <% else %>
+          <ul class="nav navbar-nav collapsed pull-xs-right">
+            <li class="nav-item">
+              <%= link_to root_path, :class => 'nav-link' do%>
+                <%= fa_icon "home" %> <div class="content-hidden">Inicio</div>
+              <% end %>
+            </li>
+            <li class="nav-item active">
+              <%= link_to search_pet_path, :class => 'nav-link' do%>
+                <%= fa_icon "search"%> <div class="content-hidden">Buscar</div>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to new_user_session_path, :class => 'nav-link' do%>
+                <%= fa_icon "sign-in" %> <div class="content-hidden">Ingresa</div>
+              <% end %>
+            </li>
+          
+            <li class="nav-item">
+              <%= link_to new_user_registration_path, class:"nav-link" do %>
+                <%= fa_icon "pencil-square-o" %> <div class="content-hidden">Registrate</div>
+              <% end %>
+            </li>
+          </ul>
+          <% end %>
+        </div><!-- bs-example-navbar-collapse-1 -->        
       </nav>
 
-      <div id="wrapper">
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-          <div class="container">
-
-            <div class="alert alert-success" role="alert" hidden>
-              <%= notice %>
-            </div>
-
-            Bienvenido XD
-
-      
-        <div class="row"> 
-          <% @pets.each do |pet| %>            
-              <div class="col-sm-6 col-md-4" style="margin-top:20px;">
-                <hr class="post">
-                <h2 class="post-name"><%= pet.name %></h2>
-                <p class="message"><%= pet.specie %>: <%= pet.race %></p>              
-                <p class="message"><%= pet.description %></p>                             
-                <p class="message"><%=image_tag pet.imagen.thumb.url %></p>  
-                <!--<p class="message"><%=image_tag(pet.imagen.url) %></p>--> 
-                <p><%= link_to 'Ver publicación »', pet, class:"btn btn-primary" %></p>
-              </div>          
-          <% end %>
-        </div>              
-        <center>
-            <%= paginate(@pets) %>
-        </center>
-      </div><!-- /#wrapper -->        
+      <br>
+        <br>
+        <br>
+        
+        <%=@pet.name%><br>
+        <%=@user.given_name%>

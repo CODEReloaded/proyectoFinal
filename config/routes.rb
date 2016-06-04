@@ -4,6 +4,12 @@ Rails.application.routes.draw do
 
   get 'mascotas/buscar' => 'pets#search', as: :search_pet
 
+  get 'usuario/mis_mascotas' => 'pets#my_pets', as: :my_pets_pet
+
+  get 'usuario/interesados' => 'pets#list_interested', as: :list_interested_pet
+
+  get 'usuario/nuevo_dueño' => 'pets#new_owner', as: :new_owner_pet
+
   resources :pets,
     path: 'mascotas',
     path_names: { new: "nueva", edit: "editar"}

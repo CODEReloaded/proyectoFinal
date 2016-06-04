@@ -17,6 +17,11 @@
                 <%= fa_icon "search"%> <div class="content-hidden">Buscar</div>
               <% end %>
             </li>
+            <li class="nav-item">
+              <%= link_to my_pets_pet_path, :class => 'nav-link' do%>
+                <%= fa_icon "search"%> <div class="content-hidden">Mis Publicaciones</div>
+              <% end %>
+            </li>
             <li class="nav-item ">
               <%= link_to new_pet_path, class:"nav-link" do %>
                 <%= fa_icon "pencil-square" %> <div class="content-hidden">Publicar</div>
