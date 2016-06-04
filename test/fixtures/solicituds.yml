@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  ocupacion: MyString
+  edad: 1
+  por_que: MyText
+  consideras: MyString
+  experiencia: false
+  actividades: MyText
+  gastos: false
+  vivienda: MyString
+  dormir: MyString
+  mudarse: MyText
+  ajuste: false
+
+two:
+  nombre: MyString
+  ocupacion: MyString
+  edad: 1
+  por_que: MyText
+  consideras: MyString
+  experiencia: false
+  actividades: MyText
+  gastos: false
+  vivienda: MyString
+  dormir: MyString
+  mudarse: MyText
+  ajuste: false

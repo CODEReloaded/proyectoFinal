@@ -1,0 +1,22 @@
+<%= simple_form_for(@solicitud) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :nombre %>
+    <%= f.input :ocupacion %>
+    <%= f.input :edad %>
+    <%= f.input :por_que %>
+    <%= f.input :consideras %>
+    <%= f.input :experiencia %>
+    <%= f.input :actividades %>
+    <%= f.input :gastos %>
+    <%= f.input :vivienda %>
+    <%= f.input :dormir %>
+    <%= f.input :mudarse %>
+    <%= f.input :ajuste %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

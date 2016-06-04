@@ -1,0 +1,5 @@
+class Solicitud < ActiveRecord::Base
+	belongs_to :user
+	acts_as_follower
+	
+end

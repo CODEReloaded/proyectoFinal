@@ -1,5 +1,6 @@
 Rails.application.routes.draw do  
   
+  resources :solicituds
   root 'pets#index'
 
   get 'mascotas/buscar' => 'pets#search', as: :search_pet
