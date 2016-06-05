@@ -1,22 +1,65 @@
-<%= simple_form_for(@solicitud) do |f| %>
-  <%= f.error_notification %>
+<div id="wrapper">
+<div id="page-content-wrapper">
+<div class="container">
+ <div class="row">
+ <div class="col-sm-offset-2 col-md-offset-3 col-lg-offset-4 col-xs-12 col-sm-8 col-md-6 col-lg-4">
 
+<h3 class="omb_authTitle" style="text-align:center">Solicitud</h3>
+
+<%= simple_form_for(@solicitud) do |f| %>
+<% if alert or f.error_notification %>
+<div class="alert alert-warning" role="alert">
+<strong class="warning"></strong>
+<%= alert %>
+<%= f.error_notification %>
+</div>
+<% end %>
   <div class="form-inputs">
+  <div class="form-group">
     <%= f.input :nombre %>
+    </div>
+    <div class="form-group">
     <%= f.input :ocupacion %>
+    </div>
+    <div class="form-group">
     <%= f.input :edad %>
+    </div>
+    <div class="form-group">
     <%= f.input :por_que %>
+    </div>
+    <div class="form-group">
     <%= f.input :consideras %>
+    </div>
+    <div class="form-group">
     <%= f.input :experiencia %>
+    </div>
+    <div class="form-group">
     <%= f.input :actividades %>
+    </div>
+    <div class="form-group">
     <%= f.input :gastos %>
+    </div>
+    <div class="form-group">
     <%= f.input :vivienda %>
+    </div>
+    <div class="form-group">
     <%= f.input :dormir %>
+    </div>
+    <div class="form-group">
     <%= f.input :mudarse %>
+    </div>
+    <div class="form-group">
     <%= f.input :ajuste %>
+    </div>
   </div>
 
   <div class="form-actions">
     <%= f.button :submit %>
+  </div>
+
+  </div>
+  </div>
+  </div>
+  </div>
   </div>
 <% end %>

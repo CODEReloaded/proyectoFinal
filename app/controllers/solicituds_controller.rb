@@ -28,9 +28,11 @@ class SolicitudsController < ApplicationController
   # POST /solicituds.json
   def create
     @solicitud = Solicitud.new(solicitud_params)
-
     respond_to do |format|
       if @solicitud.save
+        solicitud = Solicitud.find(@Solicitud.id)
+        user = User.find(current_user.id)
+        solicitud.follow(user)
         format.html { redirect_to @solicitud, notice: 'Solicitud was successfully created.' }
         format.json { render :show, status: :created, location: @solicitud }
       else
