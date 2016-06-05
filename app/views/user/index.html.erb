@@ -16,7 +16,7 @@
                 <%= fa_icon "search"%> <div class="content-hidden">Buscar</div>
               <% end %>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item">
               <%= link_to new_pet_path, class:"nav-link" do %>
                 <%= fa_icon "pencil-square" %> <div class="content-hidden">Publicar</div>
               <% end %>
@@ -51,12 +51,16 @@
             <div class="row">
               <% @pets.each do |pet| %>
                 <div class="col-sm-6 col-md-4" style="margin-top:20px;">
-                  <p><center> <%=image_tag pet.imagen.thumb.url %> </center></p>
-                  <h2 class="post-name"><%= pet.name %></h2>
-                  <p><%= pet.specie %>: <%= pet.race %></p>
-                  <p class="message"><%= pet.description %></p>                 
-                  <p><%= link_to 'Ver publicación »', pet, class:"btn btn-primary" %></p>
-                  <!--<p class="message"><%=image_tag(pet.imagen.url) %></p>--> 
+                  <hr class="post"/>
+                  <div class="card-image">
+                    <center> <%=image_tag pet.imagen.thumb.url, class: "card-img-top" %> </center>
+                  </div>
+                  <div class="card-block">
+                    <h4 class="card-title"><%= pet.name %></h4>
+                    <p><%= pet.specie %>: <%= pet.race %></p>
+                    <p class="card-text message"><%= pet.description %></p>
+                    <%= link_to 'Ver publicación »', pet, class:"btn btn-primary" %>
+                  </div>
                 </div>
               <% end %>
             </div>

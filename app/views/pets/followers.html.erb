@@ -12,17 +12,17 @@
                 <%= fa_icon "home"%> <div class="content-hidden">Inicio</div>
               <% end %>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <%= link_to search_pet_path, :class => 'nav-link' do%>
                 <%= fa_icon "search"%> <div class="content-hidden">Buscar</div>
               <% end %>
             </li>
-            <li class="nav-item">
+            <li class="nav-item ">
               <%= link_to new_pet_path, class:"nav-link" do %>
                 <%= fa_icon "pencil-square" %> <div class="content-hidden">Publicar</div>
               <% end %>
             </li>
-            <li class="nav-item">
+            <li class="nav-item ">
               <%= link_to edit_user_path, class:"nav-link" do %>
                 <%= fa_icon "pencil" %> <div class="content-hidden">Editar Cuenta</div>
               <% end %>
@@ -40,7 +40,7 @@
                 <%= fa_icon "home" %> <div class="content-hidden">Inicio</div>
               <% end %>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <%= link_to search_pet_path, :class => 'nav-link' do%>
                 <%= fa_icon "search"%> <div class="content-hidden">Buscar</div>
               <% end %>
@@ -60,73 +60,28 @@
           <% end %>
         </div><!-- bs-example-navbar-collapse-1 -->
       </nav>
-      
-      <br><br> <!-- Agregar espacio entre el header y body--> 
-      <nav>
-        <ul class="pager">
-          <li><%= link_to '« Regresar', :back %></li>          
-        </ul>
-      </nav>
 
-<p id="notice"><%= notice %></p>
+      <div id="wrapper">
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+          <div class="container">
+            <div class="row">
 
-<p>
-  <h2 style="text-align:center"><strong><%= @pet.name %></strong></h2>  
-</p>
+            <br/>
+            <br/>
+            <h4 class="omb_authTitle" style="text-align:center">Interesados</h4>
 
-<p style="text-align:center">
-  <strong >Edad: <%= @pet.age %></strong>  
-</p>
-
-<p style="text-align:center">
-  <strong>Especie: <%= @pet.specie %></strong>  
-</p>
-
-<p style="text-align:center">
-  <strong>Sexo: <%= @pet.sex %></strong>  
-</p>
-
-<p style="text-align:center">
-  <strong>Raza: <%= @pet.race %></strong>  
-</p>
-
-<p style="text-align:center">
-  <strong>Tamaño: <%= @pet.height %></strong>  
-</p>
-
-<p style="text-align:center">
-  <strong>Esterilización: <%= @pet.sterilization %></strong>  
-</p>
-
-<p style="text-align:center">
-  <strong>Adoptado: <%= @pet.adpted %></strong>  
-</p>
-
-<p style="text-align:center">
-  <strong>Descripción: <%= @pet.description %></strong>  
-</p>
-
-<p style="text-align:center">
-  <strong>Dueño: <%= User.find(@pet.user_id).given_name %></strong>  
-</p>
-
-<p style="text-align:center">
-  <strong>No. de Interesados <%= @pet.followers_count %></strong>  
-</p>
-
-    <nav>
-      <ul class="pager">
-      <% if user_signed_in? %>
-        <% if current_user.id == @pet.user_id %>
-          <li><%= link_to 'Editar', edit_pet_path(@pet) %> </li>
-        <% else %>
-          <% if User.find(current_user.id).following?(@pet) %>
-            <%else%>
-              <li><%= link_to 'Me interesa', interesado_path(id: @pet.id), :method => :post %></li>
-            <%end%>
-          <% end %> 
-        <% else %>
-        <li>Debes registrarte para poder adoptar</li>
-      <% end %>
-      </ul>
-    </nav>
+            <% if @pet.followers_count > 0 %>
+            <div class="row">
+              <center>
+                <% @pet.followers.each do |f| %>
+                  <%= f.given_name %> <br/>
+                <% end %>
+              </center>
+            </div>
+            <% else %>
+            No se encontraron seguidores
+            <% end %>
+          </div>
+        </div>
+      </div><!-- /#wrapper -->  
