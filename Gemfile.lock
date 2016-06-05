@@ -225,9 +225,6 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    shareable (1.1.4)
-      actionpack (>= 3.0.0)
-      activesupport (>= 3.0.0)
     simple_form (3.2.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
@@ -300,7 +297,6 @@ DEPENDENCIES
   rmagick (~> 2.15, >= 2.15.4)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
-  shareable
   simple_form (~> 3.2.0)
   spring
   turbolinks
