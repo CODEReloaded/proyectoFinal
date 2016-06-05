@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :pets
 
   acts_as_follower
+  acts_as_followable
   
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable,
@@ -12,13 +13,9 @@ class User < ActiveRecord::Base
 
   # Uncomment and change for production environment
   validates :given_name, :first_surname, :second_surname, :address, presence: true
-  # validates :given_name, :first_surname, :second_surname, presence: true
 
   # Validating mobile phone numbers accepts in Mexico
   validates :phone_number, phone: { possible: true, types: [:mobile] }
-
-  # Uncomment this for production
-  # geocoded_by :ip_address
 
   # This is for fastness to find other users
   acts_as_mappable :auto_geocode => { :field=>:address, 

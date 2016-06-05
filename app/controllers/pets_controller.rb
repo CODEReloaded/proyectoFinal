@@ -13,8 +13,8 @@ class PetsController < ApplicationController
   # GET /pets
   # GET /pets.json
   def index
-    @title = 'Mascotas'
-    @pets = Pet.all
+    @title = 'Mascotas'    
+    @pets = Pet.where(adpted: 'f').page(params[:page]).per(3)
   end
 
   # GET /pets/1
@@ -39,6 +39,26 @@ class PetsController < ApplicationController
     render :show
   end  
 
+  def list_interested          
+    @pet = Pet.find(params[:id])
+    render :list_interested
+  end  
+
+  def new_owner
+    @pet = Pet.find(params[:no])
+    @user = User.find(params[:id])
+    @pet.adpted = true
+    @pet.new_owner=@user.id
+    @pet.save
+    render :new_owner
+  end  
+
+  def my_pets
+    user = User.find(current_user.id)
+    @pets = Pet.where(user_id: user.id).page(params[:page]).per(3)
+    render :my_pets
+  end
+  
   # POST /pets
   # POST /pets.json
   def create

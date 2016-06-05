@@ -1,9 +1,9 @@
 class Pet < ActiveRecord::Base
 
+	belongs_to :user	
+
 	extend Enumerize
 	extend FriendlyId
-
-	belongs_to :user
     
     acts_as_followable    
 
@@ -14,7 +14,8 @@ class Pet < ActiveRecord::Base
 	
 	validates :description, presence: { message: "Debes dar una descripción de la mascota" }
 
-	enumerize :sex, in: [:macho, :hembra]
+	
+	enumerize :sex, in: [:macho , :hembra]
 	enumerize :height, in: [:pequeño, :mediano, :grande]
 
 	mount_uploader :imagen, ImageUploader
@@ -41,4 +42,5 @@ class Pet < ActiveRecord::Base
 	def image_size_validation
     	errors[:imagen] << "should be less than 500KB" if imagen.size > 0.5.megabytes
   end
+
 end

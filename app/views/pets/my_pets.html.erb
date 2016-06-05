@@ -5,8 +5,9 @@
             <i class="fa fa-rocket fa-4"></i>
             <div class="content-hidden">Mascotas</div>
           </a>
+          <% if current_user %>
           <ul class="nav navbar-nav collapsed pull-xs-right">
-            <li class="nav-item active">
+            <li class="nav-item">
               <%= link_to user_path, :class => 'nav-link' do%>
                 <%= fa_icon "home"%> <div class="content-hidden">Inicio</div>
               <% end %>
@@ -16,7 +17,7 @@
                 <%= fa_icon "search"%> <div class="content-hidden">Buscar</div>
               <% end %>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <%= link_to my_pets_pet_path, :class => 'nav-link' do%>
                 <%= fa_icon "list"%> <div class="content-hidden">Mis Publicaciones</div>
               <% end %>
@@ -37,9 +38,34 @@
               <% end %>
             </li>
           </ul>
+          <% else %>
+          <ul class="nav navbar-nav collapsed pull-xs-right">
+            <li class="nav-item">
+              <%= link_to root_path, :class => 'nav-link' do%>
+                <%= fa_icon "home" %> <div class="content-hidden">Inicio</div>
+              <% end %>
+            </li>
+            <li class="nav-item active">
+              <%= link_to search_pet_path, :class => 'nav-link' do%>
+                <%= fa_icon "search"%> <div class="content-hidden">Buscar</div>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to new_user_session_path, :class => 'nav-link' do%>
+                <%= fa_icon "sign-in" %> <div class="content-hidden">Ingresa</div>
+              <% end %>
+            </li>
+          
+            <li class="nav-item">
+              <%= link_to new_user_registration_path, class:"nav-link" do %>
+                <%= fa_icon "pencil-square-o" %> <div class="content-hidden">Registrate</div>
+              <% end %>
+            </li>
+          </ul>
+          <% end %>
         </div><!-- bs-example-navbar-collapse-1 -->
       </nav>
-
+      
       <div id="wrapper">
         <!-- Page Content -->
         <div id="page-content-wrapper">
@@ -63,7 +89,13 @@
                   <div class="card-block">
                     <h4 class="card-title"><%= pet.name %></h4>
                     <p><%= pet.specie %>: <%= pet.race %></p>
-                    <p class="card-text message"><%= pet.description %></p>
+                    <%if pet.adpted == false %>
+                      <p class="card-text message"><%= pet.description %></p>
+                    <%else%>
+                      <p class="card-text message text-success">
+                        ¡YA TIENE HOGAR! =)
+                      </p>
+                    <%end%>
                     <%= link_to 'Ver publicación »', pet, class:"btn btn-primary" %>
                   </div>
                 </div>
