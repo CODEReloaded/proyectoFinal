@@ -77,7 +77,7 @@ class PetsController < ApplicationController
       @hash = Gmaps4rails.build_markers(@pets) do |pet, marker|
         marker.lat pet.latitude
         marker.lng pet.longitude
-        marker.infowindow '<a href="'+pet_path(pet)+'">'+pet.name+'</a>'
+        marker.infowindow '<a style="font-size:18px" href="'+pet_path(pet)+'">'+pet.name+'</a>'
       end
     end
   end

@@ -91,7 +91,6 @@ gem "acts_as_follower"
 gem 'acts_as_commentable_with_threading'
 gem 'commontator', '~> 4.11', '>= 4.11.1'
 gem 'unread', '~> 0.8.0'
-gem 'social-share-button'
 
 # This gem is for better-errors gem
 gem 'binding_of_caller'
