@@ -5,9 +5,7 @@ Rails.application.routes.draw do
   get 'mascotas/buscar' => 'pets#search', as: :search_pet
 
   get 'usuario/mis_mascotas' => 'pets#my_pets', as: :my_pets_pet
-
-  get 'usuario/interesados' => 'pets#list_interested', as: :list_interested_pet
-
+  get 'mascotas/interesados' => 'pets#list_interested', as: :list_interested_pet
   get 'usuario/nuevo_dueño' => 'pets#new_owner', as: :new_owner_pet
 
   resources :pets,
@@ -26,7 +24,7 @@ Rails.application.routes.draw do
     post 'like' => 'pets#interested', as: :interesado
     get 'contraseña/nueva' => 'users/passwords#new',  as: :new_password
     post 'contraseña/nueva' => 'users/passwords#create', as: :password
-    get 'contraseña/editar' => 'users/passwords#edit', via: [:get], as: :edit_password
+    get 'contraseña/editar' => 'users/passwords#edit', as: :edit_password
     match 'contraseña/editar' => 'users/passwords#update', via: [:put, :patch], as: :update_password
     get 'usuario/editar' => 'users/registrations#edit', as: :edit_user
     match 'usuario/editar' => 'users/registrations#update', via: [:put, :patch], as: :update_user

@@ -18,7 +18,7 @@
             </li>
             <li class="nav-item">
               <%= link_to my_pets_pet_path, :class => 'nav-link' do%>
-                <%= fa_icon "search"%> <div class="content-hidden">Mis Publicaciones</div>
+                <%= fa_icon "list"%> <div class="content-hidden">Mis Publicaciones</div>
               <% end %>
             </li>
             <li class="nav-item ">
@@ -49,23 +49,31 @@
               <%= notice %>
             </div>
 
-            Bienvenido XD
+            <div class="welcome-user-header">
+              <div class="user-name"><%= current_user.given_name%></div> con sesion iniciada
+            </div>
+            
+            <div class="row">
+              <% @pets.each do |pet| %>
+                <div class="col-sm-6 col-md-4" style="margin-top:20px;">
+                  <hr class="post"/>
+                  <div class="card-image">
+                    <center> <%=image_tag pet.imagen.thumb.url, class: "card-img-top" %> </center>
+                  </div>
+                  <div class="card-block">
+                    <h4 class="card-title"><%= pet.name %></h4>
+                    <p><%= pet.specie %>: <%= pet.race %></p>
+                    <p class="card-text message"><%= pet.description %></p>
+                    <%= link_to 'Ver publicación »', pet, class:"btn btn-primary" %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
 
-      
-        <div class="row"> 
-          <% @pets.each do |pet| %>            
-              <div class="col-sm-6 col-md-4" style="margin-top:20px;">
-                <hr class="post">
-                <h2 class="post-name"><%= pet.name %></h2>
-                <p class="message"><%= pet.specie %>: <%= pet.race %></p>              
-                <p class="message"><%= pet.description %></p>                             
-                <p class="message"><%=image_tag pet.imagen.thumb.url %></p>  
-                <!--<p class="message"><%=image_tag(pet.imagen.url) %></p>--> 
-                <p><%= link_to 'Ver publicación »', pet, class:"btn btn-primary" %></p>
-              </div>          
-          <% end %>
-        </div>              
-        <center>
-            <%= paginate(@pets) %>
-        </center>
-      </div><!-- /#wrapper -->        
+            <center>
+              <%= paginate(@pets) %>
+            </center>
+
+          </div><!-- /#page-content-wrapper -->
+        </div><!-- /#wrapper -->
+      </div>

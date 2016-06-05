@@ -37,22 +37,48 @@
       </nav>
 
       <div id="wrapper">
-        <div class="row"> 
-          <% @pets.each do |pet| %>
-            
-              <div class="col-sm-6 col-md-4" style="margin-top:20px;">
-                <hr class="post">
-                <h2 class="post-name"><%= pet.name %></h2>
-                <p class="message"><%= pet.specie %>: <%= pet.race %></p>              
-                <p class="message"><%= pet.description %></p>                             
-                <p class="message"><%=image_tag pet.imagen.thumb.url %></p>  
-                <!--<p class="message"><%=image_tag(pet.imagen.url) %></p>--> 
-                <p><%= link_to 'Ver publicación »', pet, class:"btn btn-primary" %></p>
-              </div>
-            
-          <% end %>
-        </div>              
-        <center>
-            <%= paginate(@pets) %>
-        </center>
-      </div><!-- /#wrapper -->  
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+          <div class="container">
+
+            <div class="jumbotron">
+              <h1 class="display-3">Necesitas un amigo?</h1>
+              <p class="lead">En esta página podras encontrar a tu amigo perfecto, no discriminamos los gustos o preferencias de nuestros usuarios, así que ¿qué esperas?, busca un amigo o ecuentra un nuevo hogar para una mascota que tengas.</p>
+              <p>
+                <%= link_to search_pet_path, :class => 'nav-link btn btn-lg btn-success' do%>
+                  <%= fa_icon "search"%> Buscar
+                <% end %>
+                <%= link_to new_pet_path, :class => 'nav-link btn btn-lg btn-success' do%>
+                  <%= fa_icon "pencil-square"%> Publicar
+                <% end %>
+              </p>
+            </div>
+
+            <div class="alert alert-success" role="alert" hidden>
+              <%= notice %>
+            </div>
+
+            <div class="row">
+              <% @pets.each do |pet| %>
+                <div class="col-sm-6 col-md-4" style="margin-top:20px;">
+                  <hr class="post"/>
+                  <div class="card-image">
+                    <center> <%=image_tag pet.imagen.thumb.url, class: "card-img-top" %> </center>
+                  </div>
+                  <div class="card-block">
+                    <h4 class="card-title"><%= pet.name %></h4>
+                    <p><%= pet.specie %>: <%= pet.race %></p>
+                    <p class="card-text message"><%= pet.description %></p>
+                    <%= link_to 'Ver publicación »', pet, class:"btn btn-primary" %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+
+            <center>
+              <%= paginate(@pets) %>
+            </center>
+
+          </div><!-- /#page-content-wrapper -->
+        </div><!-- /#wrapper -->
+      </div>

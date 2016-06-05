@@ -25,7 +25,6 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'acts_as_follower'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -47,7 +46,6 @@ end
 
 # Form builders
 gem 'simple_form', '~> 3.2.0'
-gem 'cocoon', '~> 1.2.8'
 
 # Enums for (radio, checkbox) 'buttons' in simple_form
 gem 'enumerize'
@@ -68,20 +66,18 @@ gem 'kaminari', '~> 0.16.3'
 # pet's photo
 gem 'carrierwave'
 gem 'rmagick', '~> 2.15', '>= 2.15.4'
-#gem 'carrierwave_postgresql'
 
 # Autorization
-gem 'pundit', '~> 1.1'
 gem 'cancancan', '~> 1.13'
 
 # url customized
 gem 'friendly_id', '~> 5.1'
 
 # geolocation
-gem 'geocoder', '~> 1.3.4'
 gem 'geokit', '~> 1.10'
 gem 'geokit-rails'
-#gem 'gmaps4rails'
+gem 'gmaps4rails'
+gem 'underscore-rails'
 
 # phone validation
 gem 'phonelib'
@@ -96,7 +92,6 @@ gem "acts_as_follower"
 gem 'acts_as_commentable_with_threading'
 gem 'commontator', '~> 4.11', '>= 4.11.1'
 gem 'unread', '~> 0.8.0'
-gem 'social-share-button'
 
 # This gem is for better-errors gem
 gem 'binding_of_caller'
