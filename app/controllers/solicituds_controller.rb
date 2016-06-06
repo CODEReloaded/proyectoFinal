@@ -36,7 +36,7 @@ class SolicitudsController < ApplicationController
     @solicitud = Solicitud.new(solicitud_params)
     @solicitud.id = current_user.id
     respond_to do |format|
-      if @solicitud.save!
+      if @solicitud.save
         solicitud = Solicitud.find(@solicitud.id)
         user = User.find(current_user.id)
         user.follow(solicitud)
