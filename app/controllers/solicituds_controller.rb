@@ -32,8 +32,8 @@ class SolicitudsController < ApplicationController
       if @solicitud.save
         solicitud = Solicitud.find(@Solicitud.id)
         user = User.find(current_user.id)
-        solicitud.follow(user)
-        format.html { redirect_to @solicitud, notice: 'Solicitud was successfully created.' }
+        user.follow(solicitud)
+        format.html { redirect_to @solicitud, notice: 'Tu solicitud ha sido guardada' }
         format.json { render :show, status: :created, location: @solicitud }
       else
         format.html { render :new }

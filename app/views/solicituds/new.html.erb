@@ -1,5 +1,42 @@
-<h1>New Solicitud</h1>
+<nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div clas="container">
+          <a class="navbar-brand" href="">
+            <i class="fa fa-rocket fa-4"></i>
+            <div class="content-hidden">Mascotas</div>
+          </a>
+          <ul class="nav navbar-nav collapsed pull-xs-right">
+            <li class="nav-item">
+              <%= link_to user_path, :class => 'nav-link' do%>
+                <%= fa_icon "home"%> <div class="content-hidden">Inicio</div>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to search_pet_path, :class => 'nav-link' do%>
+                <%= fa_icon "search"%> <div class="content-hidden">Buscar</div>
+              <% end %>
+            </li>
+            <li class="nav-item active">
+              <%= link_to new_pet_path, class:"nav-link" do %>
+                <%= fa_icon "pencil-square" %> <div class="content-hidden">Publicar</div>
+              <% end %>
+            </li>
+            <li class="nav-item ">
+              <%= link_to edit_user_path, class:"nav-link" do %>
+                <%= fa_icon "pencil" %> <div class="content-hidden">Editar Cuenta</div>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to destroy_user_session_path, method: 'delete', class:"nav-link" do %>
+                <%= fa_icon "sign-out" %> <div class="content-hidden">Salir</div>
+              <% end %>
+            </li>
+          </ul>
+        </div><!-- bs-example-navbar-collapse-1 -->
+      </nav>
+
 
 <%= render 'form' %>
-
-<%= link_to 'Back', solicituds_path %>
+<ul class="pager">
+<li><%= link_to 'Back', solicituds_path %></li>
+</ul>

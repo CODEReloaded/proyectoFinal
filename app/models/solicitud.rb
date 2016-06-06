@@ -4,7 +4,7 @@ class Solicitud < ActiveRecord::Base
 	extend FriendlyId
 
 	belongs_to :user
-	acts_as_follower
+	acts_as_followable
 	
 	validates :nombre, :ocupacion, :por_que, :consideras, :experiencia, :actividades, :gastos, :vivienda, :dormir, :mudarse, :ajuste, presence: true
 	validates :edad, numericality: { greater_than_or_equal_to: 18 } 
@@ -13,5 +13,4 @@ class Solicitud < ActiveRecord::Base
 	enumerize :dormir, in:[:jardin, :patio, :azotea, :casa]
 
 	
-
 end
