@@ -3,8 +3,8 @@ class Pet < ActiveRecord::Base
 	extend Enumerize
 	extend FriendlyId
 
-	belongs_to :user
-    
+	
+    belongs_to :user
     acts_as_followable    
 
 	friendly_id :slug_candidates, use: :slugged

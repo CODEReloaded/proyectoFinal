@@ -111,7 +111,8 @@
 </p>
 
 <p style="text-align:center">
-  <strong>No. de Interesados <%= @pet.followers_count-1 %></strong>  
+  <strong>No. de Interesados <%= @pet.followers_count-1 %></strong> 
+  <%= User.find(current_user.id).following_by_type_count('Solicitud') %>
 </p>
 
     <nav>
@@ -122,7 +123,7 @@
         <% else %>
           <% if User.find(current_user.id).following?(@pet) %>
           <li><p>Esta mascota te interesa puedes dejar de seguirla o mandar solicitud, solo puedes mandar una solicitud a la vez, si ya enviaste una ya no podras mandar mas a otras mascotas</p></li>
-          <% if User.find(current_user.id).following_by_type_count('solicitud') == 0 %>
+          <% if User.find(current_user.id).following_by_type_count('Solicitud') == 0 %>
           <li><%= link_to 'Dejar de seguir', desinteresado_path(id: @pet.id), :method => :post %></li>
           <li><%= link_to 'Llenar solicitud', new_solicitud_path %></li>
           <% else %>

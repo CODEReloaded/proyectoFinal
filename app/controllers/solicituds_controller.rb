@@ -10,6 +10,12 @@ class SolicitudsController < ApplicationController
     @solicituds = Solicitud.all
   end
 
+  def log_in?
+    if current_user
+      redirect_to user_path
+    end
+  end
+
   # GET /solicituds/1
   # GET /solicituds/1.json
   def show
@@ -28,9 +34,10 @@ class SolicitudsController < ApplicationController
   # POST /solicituds.json
   def create
     @solicitud = Solicitud.new(solicitud_params)
+    @solicitud.id = current_user.id
     respond_to do |format|
-      if @solicitud.save
-        solicitud = Solicitud.find(@Solicitud.id)
+      if @solicitud.save!
+        solicitud = Solicitud.find(@solicitud.id)
         user = User.find(current_user.id)
         user.follow(solicitud)
         format.html { redirect_to @solicitud, notice: 'Tu solicitud ha sido guardada' }

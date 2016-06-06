@@ -1,9 +1,6 @@
 class Solicitud < ActiveRecord::Base
 
 	extend Enumerize
-	extend FriendlyId
-
-	belongs_to :user
 	acts_as_followable
 	
 	validates :nombre, :ocupacion, :por_que, :consideras, :experiencia, :actividades, :gastos, :vivienda, :dormir, :mudarse, :ajuste, presence: true
