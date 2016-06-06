@@ -19,7 +19,7 @@
             </li>
             <li class="nav-item">
               <%= link_to my_pets_pet_path, :class => 'nav-link' do%>
-                <%= fa_icon "search"%> <div class="content-hidden">Mis Publicaciones</div>
+                <%= fa_icon "list"%> <div class="content-hidden">Mis Publicaciones</div>
               <% end %>
             </li>
             <li class="nav-item ">
@@ -66,9 +66,50 @@
         </div><!-- bs-example-navbar-collapse-1 -->        
       </nav>
 
-      <br>
-        <br>
-        <br>
-        
-        <%=@pet.name%><br>
-        <%=@user.given_name%>
+      <div id="wrapper">
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+          <div class="alter">        
+            <center> <%=image_tag @pet.imagen.thumb.url, class: "card-img-top" %> </center>
+              <center>
+                <table>
+                <tr>
+                  <th>Datos Mascota</th>
+                </tr>
+                <tr>
+                  <td>
+                    <%=@pet.name%>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Edad <%=@pet.age%> años
+                  </td>
+                </tr>            
+                <tr>
+                  <td>
+                    <%=@pet.specie%> 
+                  </td>
+                </tr>            
+              </table>         
+            </center>
+            <center>
+              <div class="arrow-down"></div>
+            </center>
+            <center>
+              <table>
+                <tr>
+                  <th>Nuevo Dueño</th>
+                </tr>
+                <tr>
+                <td>
+                  <%=@user.given_name%>
+                  <%=@user.first_surname%>
+                  <%=@user.second_surname%>
+                </td>
+              </tr>
+            </table>
+          </center>        
+        </div>        
+        </div>                
+        </div>        

@@ -7,7 +7,8 @@ class Pet < ActiveRecord::Base
     
     acts_as_followable    
 
-	friendly_id :slug_candidates, use: :slugged
+    friendly_id :id, use: :slugged
+	friendly_id :name, use: [:slugged, :finders]
 
 	validates :name, :race, :height, :specie, :imagen, :sex, :longitude, :latitude, presence: true
 	validates :age, numericality: { greater_than_or_equal_to: 1 }
@@ -28,7 +29,9 @@ class Pet < ActiveRecord::Base
                    :lng_column_name => :longitude
 
 	def slug_candidates
-      [:name, [:name, :id_for_slug]]
+      [:name,       	
+      	[:name, :id_for_slug],      
+      ]
     end
 
   	def id_for_slug

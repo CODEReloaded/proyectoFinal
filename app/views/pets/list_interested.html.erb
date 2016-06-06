@@ -19,7 +19,7 @@
             </li>
             <li class="nav-item">
               <%= link_to my_pets_pet_path, :class => 'nav-link' do%>
-                <%= fa_icon "search"%> <div class="content-hidden">Mis Publicaciones</div>
+                <%= fa_icon "list"%> <div class="content-hidden">Mis Publicaciones</div>
               <% end %>
             </li>
             <li class="nav-item ">
@@ -91,7 +91,7 @@
                     <td> <%= f.given_name %> <%= f.first_surname %> <%= f.second_surname %></td>
                     <td><%= f.email %> </td> 
                     <td><%= f.phone_number%> <br/></td> 
-                    <td><li><%= link_to 'Nuevo Dueño', new_owner_pet_path(no: @pet.id, id: f.id) %></li></td> 
+                    <td><li><%= link_to 'Nuevo Dueño', new_owner_pet_path(id: @pet, no: f.id) %></li></td> 
                   </tr>
                 <% end %>
                 </table>

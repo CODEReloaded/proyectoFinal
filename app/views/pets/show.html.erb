@@ -67,11 +67,6 @@
       </nav>
       
       <br><br> <!-- Agregar espacio entre el header y body--> 
-      <nav>
-        <ul class="pager">
-          <li><%= link_to '« Regresar', :back %></li>          
-        </ul>
-      </nav>
 
 <p id="notice"><%= notice %></p>
 
@@ -108,28 +103,36 @@
 </p>
 
 <p style="text-align:center">
-  <strong>Dueño: <%= User.find(@pet.user_id).given_name %></strong>  
+  <% if @pet.new_owner %>
+    <strong>Dueño: <%= User.find(@pet.new_owner).given_name %></strong>  
+  <% else %>
+    <strong>Dueño: <%= User.find(@pet.user_id).given_name %></strong>  
+  <% end %>
 </p>
+
     <nav>
       <ul class="pager">
       <% if user_signed_in? %>
-        <% if current_user.id == @pet.user_id %>
+        <% if current_user.id == @pet.user_id and !@pet.new_owner %>
           <p style="text-align:center">
-            <strong><%= link_to 'Interesados', list_interested_pet_path(id: @pet.id)%> <%= @pet.followers_count %></strong>    
+            <strong><%= link_to 'Interesados', list_interested_pet_path(id: @pet)%> <%= @pet.followers_count %></strong>    
           </p>
           <li><%= link_to 'Editar', edit_pet_path(@pet) %> </li> 
-          <div id="wrapper">
-          <!-- Page Content -->
         <% else %>
-          <% if User.find(current_user.id).following?(@pet) %>          
-            <%else%>
+          <% if User.find(current_user.id).following?(@pet) %>
+            <p style="text-align:center">
+              <strong>Esta mascota te interesa</strong>
+            </p>
+          <% else %>
+            <% if current_user.id != @pet.user_id %>
               <p style="text-align:center">
-                <strong>No. de Interesados <%= @pet.followers_count %></strong>    
+                <strong>No. de Interesados <%= @pet.followers_count %></strong>
               </p>
-              <li><%= link_to 'Me interesa', interesado_path(id: @pet.id), :method => :post %></li>
-            <%end%>
-          <% end %> 
-        <% else %>
+              <li><%= link_to 'Me interesa', interesado_path(id: @pet), :method => :post %></li>
+            <% end %>
+          <%end%>
+        <% end %> 
+      <% else %>
         <li>Debes registrarte para poder adoptar</li>
       <% end %>
       </ul>

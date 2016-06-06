@@ -45,10 +45,10 @@ class PetsController < ApplicationController
   end  
 
   def new_owner
-    @pet = Pet.find(params[:no])
-    @user = User.find(params[:id])
+    @pet = Pet.find(params[:id])
+    @user = User.find(params[:no])
     @pet.adpted = true
-    @pet.new_owner=@user.id
+    @pet.new_owner = @user.id
     @pet.save
     render :new_owner
   end  
@@ -86,14 +86,14 @@ class PetsController < ApplicationController
       @kms = params[:kms] 
     end
     if current_user
-      @pets = Pet.where.not(user_id: current_user.id).within(@kms.to_i, :origin=>[19.3234472,-99.1796417])
+      @pets = Pet.where.not(user_id: current_user.id, adpted: 't').within(@kms.to_i, :origin=>[19.3234472,-99.1796417])
       @hash = Gmaps4rails.build_markers(@pets) do |pet, marker|
         marker.lat pet.latitude
         marker.lng pet.longitude
         marker.infowindow '<a href="'+pet_path(pet)+'">'+pet.name+'</a>'
       end
     else
-      @pets = Pet.within(@kms.to_i, :origin=>[19.3234472,-99.1796417])
+      @pets = Pet.where(adpted: 't').within(@kms.to_i, :origin=>[19.3234472,-99.1796417])
       @hash = Gmaps4rails.build_markers(@pets) do |pet, marker|
         marker.lat pet.latitude
         marker.lng pet.longitude
