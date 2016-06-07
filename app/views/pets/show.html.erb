@@ -2,7 +2,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div clas="container">
           <a class="navbar-brand" href="">
-            <i class="fa fa-rocket fa-4"></i>
+            <i class="fa fa-paw fa-4"></i>
             <div class="content-hidden">Mascotas</div>
           </a>
           <% if current_user %>
@@ -13,7 +13,7 @@
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to search_pet_path, :class => 'nav-link' do%>
+              <%= link_to search_pet_path(kms: 5), :class => 'nav-link' do%>
                 <%= fa_icon "search"%> <div class="content-hidden">Buscar</div>
               <% end %>
             </li>
@@ -65,75 +65,98 @@
           <% end %>
         </div><!-- bs-example-navbar-collapse-1 -->
       </nav>
+
+      <p id="notice" hidden><%= notice %></p>
       
-      <br><br> <!-- Agregar espacio entre el header y body--> 
+      <br/><br/> <!-- Agregar espacio entre el header y body--> 
 
-<p id="notice"><%= notice %></p>
+      <nav>
+        <ul class="pager">
+          <li><%= link_to '« Regresar', :back %></li>          
+        </ul>
+      </nav>
 
-<p>
-  <h2 style="text-align:center"><strong><%= @pet.name %></strong></h2>  
-</p>
+      <div id="wrapper">
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+          <div class="container">
 
-<p style="text-align:center">
-  <strong >Edad: <%= @pet.age %></strong>  
-</p>
+            <div class="row">
+              <div class="col-sm-12 col-md-6 col-lg-5">
+                <center>
+                   <%=image_tag @pet.imagen.url, class: "imagen-mascota" %>
+                </center>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-7">
+                <h2 style="text-align:center"><strong><%= @pet.name %></strong></h2>  
 
-<p style="text-align:center">
-  <strong>Especie: <%= @pet.specie %></strong>  
-</p>
+                <div class="col-lg-offset-1 col-sm-12 col-lg-10">
+                  <p>
+                  <% if @pet.new_owner %><!-- If has new owner to show his name -->
+                    <div> Esta mascota fue adoptada
+                    </div>
+                    <strong>Nuevo Dueño: </strong> <%= User.find(@pet.new_owner).given_name %>
+                  <% else %><!-- Show owner's name -->
+                    <strong>Dueño: </strong> <%= @owner.given_name %>
+                  <% end %>
+                  </p>
+                  <p style="text-align: justify">
+                    <strong>Especie: </strong> <%= @pet.specie %>
+                    <strong>Raza: </strong> <%= @pet.race %>
+                    <strong>Sexo: </strong> <%= @pet.sex %>
+                  </p>
+                  <p>
+                    <strong>Descripción: </strong> <%= @pet.description %>
+                  </p>
+                  <p style="text-align:center">
+                    <strong>No. de Interesados <%= @pet.followers_count %></strong> 
+                  </p>
+                </div>
+              </div>
+              <div class="col-lg-offset-1 col-sm-12 col-lg-10" style="text-align:center">
+                <p>
+                  <strong >Edad: </strong> <%= @pet.age %> <br/>
+                  <strong>Tamaño: </strong> <%= @pet.height %> <br/>
+                  <strong>Esterilización: <%= @pet.sterilization %></strong>  
+                </p>
+                <p style="text-align:center">
+                  <% if user_signed_in? %> <!-- If is logged in -->
+                    <% if current_user.id == @pet.user_id and !@pet.new_owner %> <!-- Is the owner but not new owner -->
+                      <%= link_to list_interested_pet_path(id: @pet), :class => 'btn btn-secondary' do %>
+                        <%= fa_icon "users" %> Ver Interesados
+                      <% end %> <!-- Can see list of interested -->
+                      <%= link_to edit_pet_path(@pet), :class => 'btn btn-secondary' do %>
+                        <%= fa_icon "pencil-square" %> Editar
+                      <% end %> <!-- Can edit -->
+                    <% else %>
+                      <% if User.find(current_user.id).following?(@pet) %> <!-- Isn't owner and is interested in pet -->
+                        <p style="text-align: center">
+                          Esta mascota te interesa puedes dejar de seguirla o mandar solicitud, solo puedes mandar una solicitud a la vez, si ya enviaste una ya no podras mandar mas a otras mascotas
+                        </p>
+                        <% if User.find(current_user.id).following_by_type_count('Solicitud') == 0 %> <!-- Interested and solicitud sent -->
+                          <%= link_to 'Dejar de seguir', desinteresado_path(id: @pet.id), :method => :post %> <!-- Uninterest -->
+                          <%= link_to 'Llenar solicitud', new_solicitud_path %> <!-- Send solicitud -->
 
-<p style="text-align:center">
-  <strong>Sexo: <%= @pet.sex %></strong>  
-</p>
-
-<p style="text-align:center">
-  <strong>Raza: <%= @pet.race %></strong>  
-</p>
-
-<p style="text-align:center">
-  <strong>Tamaño: <%= @pet.height %></strong>  
-</p>
-
-<p style="text-align:center">
-  <strong>Esterilización: <%= @pet.sterilization %></strong>  
-</p>
-
-<p style="text-align:center">
-  <strong>Descripción: <%= @pet.description %></strong>  
-</p>
-
-<p style="text-align:center">
-  <% if @pet.new_owner %>
-    <strong>Dueño: <%= User.find(@pet.new_owner).given_name %></strong>  
-  <% else %>
-    <strong>Dueño: <%= User.find(@pet.user_id).given_name %></strong>  
-  <% end %>
-</p>
-
-    <nav>
-      <ul class="pager">
-      <% if user_signed_in? %>
-        <% if current_user.id == @pet.user_id and !@pet.new_owner %>
-          <p style="text-align:center">
-            <strong><%= link_to 'Interesados', list_interested_pet_path(id: @pet)%> <%= @pet.followers_count %></strong>    
-          </p>
-          <li><%= link_to 'Editar', edit_pet_path(@pet) %> </li> 
-        <% else %>
-          <% if User.find(current_user.id).following?(@pet) %>
-            <p style="text-align:center">
-              <strong>Esta mascota te interesa</strong>
-            </p>
-          <% else %>
-            <% if current_user.id != @pet.user_id %>
-              <p style="text-align:center">
-                <strong>No. de Interesados <%= @pet.followers_count %></strong>
-              </p>
-              <li><%= link_to 'Me interesa', interesado_path(id: @pet), :method => :post %></li>
-            <% end %>
-          <%end%>
-        <% end %> 
-      <% else %>
-        <li>Debes registrarte para poder adoptar</li>
-      <% end %>
-      </ul>
-    </nav>
+                        <% else %> <!-- Solicitud sent -->
+                          <%= link_to desinteresado_path(id: @pet.id), :method => :post, :class => 'btn btn-secondary' do %>
+                            <%= fa_icon "times" %> Ya no me interesa
+                          <% end %> <!-- Uninterest -->
+                          Ya has enviado una solicitud
+                        <% end %>
+                      <% else %> <!-- Not interested -->
+                        <% if current_user.id != @pet.user_id %> <!-- Logged in and not interested -->
+                          <%= link_to interesado_path(id: @pet), :method => :post, :class => 'btn btn-secondary' do %>
+                            <%= fa_icon "paw" %> Me interesa
+                          <% end %> <!-- Uninterest -->
+                        <% end %>
+                      <% end %>
+                    <%end%>
+                  <% else %>
+                    Debes registrarte para poder adoptar
+                  <% end %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div><!-- /#page-content-wrapper -->
+      </div><!-- /#wrapper -->

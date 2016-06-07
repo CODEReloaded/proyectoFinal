@@ -1,0 +1,168 @@
+<div id="wrapper">
+<div id="page-content-wrapper">
+<div class="container">
+ <div class="row">
+ <div class="col-sm-offset-2 col-md-offset-3 col-lg-offset-4 col-xs-12 col-sm-8 col-md-6 col-lg-4">
+
+<h3 class="omb_authTitle" style="text-align:center">Solicitud</h3>
+
+<%= simple_form_for(@solicitud) do |f| %>
+<% if alert or f.error_notification %>
+<div class="alert alert-warning" role="alert">
+<strong class="warning"></strong>
+<%= alert %>
+<%= f.error_notification %>
+</div>
+<% end %>
+  <div class="form-inputs">
+  <div class="form-group">
+    <%= f.input :nombre, label:'Escribe tu nombre', autofocus: ((@solicitud.errors.include?(:nombre)) ? true : false), required: true, input_html: { class:'form-control' } %>
+    </div>
+    <div class="form-group">
+    <%= f.input :ocupacion, label:'¿A que te dedicas?', autofocus: ((@solicitud.errors.include?(:ocupacion)) ? true : false), required: true, input_html: { class:'form-control' } %>
+    </div>
+    <div class="form-group">
+    <%= f.input :edad, label:'¿Cual es tu edad?', autofocus: ((@solicitud.errors.include?(:edad)) ? true : false), required: true, input_html: { class:'form-control' } %>
+    </div>
+    <div class="form-group">
+    <%= f.input :por_que, label: '¿Por que quieres adopatar una mascota?', autofocus: ((@solicitud.errors.include?(:por_que)) ? true : false), required: true, input_html: { class:'form-control' } %>
+    </div>
+    <div class="form-group">
+    <%= f.input :consideras, label: '¿Como considerarias a tu nueva mascota?', autofocus: ((@solicitud.errors.include?(:consideras)) ? true : false), required: true, input_html: { class:'form-control' } %>
+    </div>
+    <div class="form-group">
+    <%= f.input :experiencia, hint: '¿Has tenido experiencia cuidando mascotas?', as: :boolean, checked_value: true, unchecked_value: false, input_html: { class:'form-control' } %>
+    </div>
+    <div class="form-group">
+    <%= f.input :actividades, label:'¿Qué tipo de actividades planea realizar con el perro o gato que desea adoptar?', autofocus: ((@solicitud.errors.include?(:actividades)) ? true : false), required: true, input_html: { class:'form-control' } %>
+    </div>
+    <div class="form-group">
+    <%= f.input :gastos, hint:'¿Conoces cuales son los gastos economicos qe involucran tener mascota?',as: :boolean, checked_value: true, unchecked_value: false, input_html: { class:'form-control' } %>
+    </div>
+    <div class="form-group">
+    <%= f.input :vivienda, label:'¿En donde vives?', autofocus: ((@solicitud.errors.include?(:vivienda)) ? true : false), required: true, input_html: { class:'form-control' } %>
+    </div>
+    <div class="form-group">
+    <%= f.input :dormir, label:'¿En donde dormiria la mascota?', autofocus: ((@solicitud.errors.include?(:dormir)) ? true : false), required: true, input_html: { class:'form-control' } %>
+    </div>
+    <div class="form-group">
+    <%= f.input :mudarse, label:'¿Qué sucedería si tuviera que mudarse a otra casa o ciudad /país? ', autofocus: ((@solicitud.errors.include?(:mudarse)) ? true : false), required: true, input_html: { class:'form-control' } %>
+    </div>
+    <div class="form-group">
+    <%= f.input :ajuste, hint:' ¿Está dispuesto a que el perro o gato tenga un periodo de ajuste en el que aprenda dónde debe ir al baño y se adapte a la familia? ', as: :boolean, checked_value: true, unchecked_value: false, input_html: { class:'form-control' } %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+ <script>
+    var AutoResizer = function (textArea, options) {
+    var self = this;
+
+    this.$textArea = $(textArea);
+    this.minHeight = this.$textArea.height();
+
+    this.options = $.extend({}, $.fn.autoResizer.defaults, options)
+
+    this.$shadowArea = $('<div></div>').css({
+        position: 'absolute',
+        top: -10000,
+        left: -10000,
+        fontSize: this.$textArea.css('fontSize') || 'inherit',
+        fontFamily: this.$textArea.css('fontFamily') || 'inherit',
+        lineHeight: this.$textArea.css('lineHeight') || 'inherit',
+
+        /* this helps a bit */
+        paddingTop: this.$textArea.css('paddingTop') || 'inherit',
+        paddingBottom: this.$textArea.css('paddingBottom') || 'inherit',
+        paddingLeft: this.$textArea.css('paddingLeft') || 'inherit',
+        paddingRight: this.$textArea.css('paddingRight') || 'inherit',
+
+        /*
+        But once you add borders to a box-sizing: border-box textarea,
+        things go very wrong and this doesn't help.
+        */
+        borderTopWidth: this.$textArea.css('borderTopWidth') || 'inherit',
+        borderBottomWidth: this.$textArea.css('borderBottomWidth') || 'inherit',
+        borderLeftWidth: this.$textArea.css('borderLeftWidth') || 'inherit',
+        borderRightWidth: this.$textArea.css('borderRightWidth') || 'inherit',
+        
+        resize: 'none'
+      }).appendTo(document.body);
+
+    var startWidth = this.$textArea.width() || $(window).width();
+    this.$shadowArea.width(startWidth);
+    
+    if (this.options.resizeOnChange) {
+      function onChange() {
+        window.setTimeout(function() {
+          self.checkResize();
+        }, 0);
+      }
+      this.$textArea.change(onChange).keyup(onChange).keydown(onChange).focus(onChange);
+    }
+
+    this.checkResize();
+  };
+
+   AutoResizer.prototype = {
+    constructor: AutoResizer,
+    checkResize: function() {
+      // No sense in auto-growing non-visible textarea, which height of 0 implies
+      if (this.$textArea.height() === 0) {
+        return;
+      }
+      // If this is first time we've seen text area rendered, remember the height
+      if (this.minHeight === 0) {
+        this.minHeight = this.$textArea.height();
+      }
+      // If the text area has changed in size past a certain threshold of difference
+      // like when it becomes visible or viewport changes
+      if (this.$textArea.width() !== 0 && Math.abs(this.$shadowArea.width() - this.$textArea.width()) > 20) {
+        this.$shadowArea.width(this.$textArea.width());
+      }
+
+      var val = this.$textArea.val().replace(/</g, '&lt;')
+              .replace(/>/g, '&gt;')
+              .replace(/&/g, '&amp;')
+              .replace(/\n/g, '<br/>&nbsp;');
+
+      if ($.trim(val) === '') {
+          val = 'a';
+      }
+      this.$shadowArea.html(val);
+      var nextHeight =  Math.max(this.$shadowArea[0].offsetHeight + 20, this.minHeight);
+      if (!this.prevHeight || nextHeight != this.prevHeight) {
+        this.$textArea.css('height', nextHeight);
+        this.prevHeight = nextHeight;
+      }
+    }
+  };
+
+
+  $.fn.autoResizer = function ( option ) {
+    return this.each(function () {
+      var $this = $(this)
+        , data = $this.data('autoresizer')
+        , options = typeof option == 'object' && option
+      if (!data) $this.data('autoresizer', (data = new AutoResizer(this, options)))
+      if (typeof option == 'string') data[option]()
+      else data.checkResize()
+    })
+  }
+
+  $.fn.autoResizer.defaults = {
+    resizeOnChange: true
+  };
+
+  $.fn.autoResizer.Constructor = AutoResizer;
+      
+  $('textarea').autoResizer();
+  </script>

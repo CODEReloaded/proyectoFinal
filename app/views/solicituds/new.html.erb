@@ -1,8 +1,8 @@
-      <nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
+<nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div clas="container">
           <a class="navbar-brand" href="">
-            <i class="fa fa-paw fa-4"></i>
+            <i class="fa fa-rocket fa-4"></i>
             <div class="content-hidden">Mascotas</div>
           </a>
           <ul class="nav navbar-nav collapsed pull-xs-right">
@@ -12,13 +12,8 @@
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to search_pet_path(kms: 5), :class => 'nav-link' do%>
+              <%= link_to search_pet_path, :class => 'nav-link' do%>
                 <%= fa_icon "search"%> <div class="content-hidden">Buscar</div>
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to my_pets_pet_path, :class => 'nav-link' do%>
-                <%= fa_icon "list"%> <div class="content-hidden">Mis Publicaciones</div>
               <% end %>
             </li>
             <li class="nav-item active">
@@ -39,10 +34,9 @@
           </ul>
         </div><!-- bs-example-navbar-collapse-1 -->
       </nav>
-    <br><br> <!-- Agregar espacio entre el header y body-->	
-    <nav>
-      <ul class="pager">
-        <li><%= link_to '« Regresar', pets_path %></li>          
-      </ul>
-    </nav>
-	<%= render 'form' %>
+
+
+<%= render 'form' %>
+<ul class="pager">
+<li><%= link_to 'Back', solicituds_path %></li>
+</ul>

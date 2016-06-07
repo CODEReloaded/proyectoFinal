@@ -2,7 +2,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div clas="container">
           <a class="navbar-brand" href="">
-            <i class="fa fa-rocket fa-4"></i>
+            <i class="fa fa-paw fa-4"></i>
             <div class="content-hidden">Mascotas</div>
           </a>
           <ul class="nav navbar-nav collapsed pull-xs-right">
@@ -12,7 +12,7 @@
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to search_pet_path, :class => 'nav-link' do%>
+              <%= link_to search_pet_path(kms: 5), :class => 'nav-link' do%>
                 <%= fa_icon "search"%> <div class="content-hidden">Buscar</div>
               <% end %>
             </li>
@@ -32,7 +32,7 @@
 
       <nav>
         <ul class="pager">
-          <li><%= link_to 'Nueva Mascota »', new_pet_path %></li>          
+          <li><%= link_to 'Nueva Mascota »', new_pet_path %></li>
         </ul>
       </nav>
 
@@ -40,7 +40,6 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
           <div class="container">
-
             <div class="jumbotron">
               <h1 class="display-3">Necesitas un amigo?</h1>
               <p class="lead">En esta página podras encontrar a tu amigo perfecto, no discriminamos los gustos o preferencias de nuestros usuarios, así que ¿qué esperas?, busca un amigo o ecuentra un nuevo hogar para una mascota que tengas.</p>
@@ -79,6 +78,6 @@
               <%= paginate(@pets) %>
             </center>
 
-          </div><!-- /#page-content-wrapper -->
-        </div><!-- /#wrapper -->
-      </div>
+          </div>
+        </div><!-- /#page-content-wrapper -->
+      </div><!-- /#wrapper -->

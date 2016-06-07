@@ -13,29 +13,43 @@ class PetsController < ApplicationController
   # GET /pets
   # GET /pets.json
   def index
-    @title = 'Mascotas'    
+    @title = 'Mascotas'
     @pets = Pet.where(adpted: 'f').page(params[:page]).per(3)
   end
 
   # GET /pets/1
   # GET /pets/1.json
   def show
+    @title = @pet.name + ' | Mascotas' 
+    @owner = User.find(@pet.user_id)
   end
 
   # GET /pets/new
   def new
+    @title = 'Nueva mascota | Mascotas' 
     @pet = Pet.new(name: FFaker::Name.name, description: FFaker::Lorem.paragraph)
   end
 
   # GET /pets/1/edit
   def edit
   end
+  
+  def notInterested
+    @pet = Pet.find(params[:id])
+    @title = @pet.name + ' | Mascotas'
+    user = User.find(current_user.id)
+    user.stop_following(@pet)
+    notice = "Ya no te interesa esta mascota"
+    render :show
+  end  
+
 
   def interested
     @pet = Pet.find(params[:id])
+    @title = @pet.name + ' | Mascotas' 
     user = User.find(current_user.id)
     user.follow(@pet)
-    notice = "like exitoso"
+    notice = "Ahora te interesa esta mascotas"
     render :show
   end  
 
@@ -81,19 +95,16 @@ class PetsController < ApplicationController
 
   # Method to find pets, receive a parameter
   def search
-    @kms = 5
-    if params[:kms]
-      @kms = params[:kms] 
-    end
+    @kms = params[:kms]
     if current_user
       @pets = Pet.where.not(user_id: current_user.id, adpted: 't').within(@kms.to_i, :origin=>[19.3234472,-99.1796417])
       @hash = Gmaps4rails.build_markers(@pets) do |pet, marker|
         marker.lat pet.latitude
         marker.lng pet.longitude
-        marker.infowindow '<a href="'+pet_path(pet)+'">'+pet.name+'</a>'
+        marker.infowindow '<a style="font-size:18px" href="'+pet_path(pet)+'">'+pet.name+'</a>'
       end
     else
-      @pets = Pet.where(adpted: 't').within(@kms.to_i, :origin=>[19.3234472,-99.1796417])
+      @pets = Pet.where(adpted: 'f').within(@kms.to_i, :origin=>[19.3234472,-99.1796417])
       @hash = Gmaps4rails.build_markers(@pets) do |pet, marker|
         marker.lat pet.latitude
         marker.lng pet.longitude

@@ -4,7 +4,7 @@ class Pet < ActiveRecord::Base
 
 	extend Enumerize
 	extend FriendlyId
-    
+	
     acts_as_followable    
 
     friendly_id :id, use: :slugged

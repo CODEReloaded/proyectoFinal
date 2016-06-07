@@ -2,10 +2,9 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div clas="container">
           <a class="navbar-brand" href="">
-            <i class="fa fa-rocket fa-4"></i>
+            <i class="fa fa-paw fa-4"></i>
             <div class="content-hidden">Mascotas</div>
           </a>
-          <% if current_user %>
           <ul class="nav navbar-nav collapsed pull-xs-right">
             <li class="nav-item">
               <%= link_to user_path, :class => 'nav-link' do%>
@@ -14,7 +13,7 @@
             </li>
             <li class="nav-item active">
               <%= link_to search_pet_path, :class => 'nav-link' do%>
-                <%= fa_icon "search"%> <div class="content-hidden">Buscar</div>
+                <%= fa_icon "search(kms: 5)"%> <div class="content-hidden">Buscar</div>
               <% end %>
             </li>
             <li class="nav-item">
@@ -38,31 +37,6 @@
               <% end %>
             </li>
           </ul>
-          <% else %>
-          <ul class="nav navbar-nav collapsed pull-xs-right">
-            <li class="nav-item">
-              <%= link_to root_path, :class => 'nav-link' do%>
-                <%= fa_icon "home" %> <div class="content-hidden">Inicio</div>
-              <% end %>
-            </li>
-            <li class="nav-item active">
-              <%= link_to search_pet_path, :class => 'nav-link' do%>
-                <%= fa_icon "search"%> <div class="content-hidden">Buscar</div>
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to new_user_session_path, :class => 'nav-link' do%>
-                <%= fa_icon "sign-in" %> <div class="content-hidden">Ingresa</div>
-              <% end %>
-            </li>
-          
-            <li class="nav-item">
-              <%= link_to new_user_registration_path, class:"nav-link" do %>
-                <%= fa_icon "pencil-square-o" %> <div class="content-hidden">Registrate</div>
-              <% end %>
-            </li>
-          </ul>
-          <% end %>
         </div><!-- bs-example-navbar-collapse-1 -->
       </nav>
 
@@ -70,6 +44,13 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
           <div class="container">
+            <br/>
+            <nav>
+              <ul class="pager">
+                <li><%= link_to '« Regresar', pet_path(@pet) %></li>
+              </ul>
+            </nav>
+
             <div class="row">
 
             <br/>
@@ -84,6 +65,7 @@
                     <th>Nombre Competo</th>
                     <th>Correo</th>
                     <th>Telefono</th>
+                    <th>Solicitud</th>
                     <th>Seleccionar</th>
                   </tr>                                                                        
                 <% @pet.followers.each do |f| %>
@@ -91,6 +73,13 @@
                     <td> <%= f.given_name %> <%= f.first_surname %> <%= f.second_surname %></td>
                     <td><%= f.email %> </td> 
                     <td><%= f.phone_number%> <br/></td> 
+                    <td>
+                      <% if User.find(current_user.id).following_by_type_count('Solicitud') == 0 %>
+                        No hay solicitid
+                      <% else %>
+                        No se cómo encontrarlo XD
+                      <% end %>
+                    </td>
                     <td><li><%= link_to 'Nuevo Dueño', new_owner_pet_path(id: @pet, no: f.id) %></li></td> 
                   </tr>
                 <% end %>
