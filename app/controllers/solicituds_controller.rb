@@ -22,8 +22,9 @@ class SolicitudsController < ApplicationController
   end
 
   # GET /solicituds/new
-  def new
-    @solicitud = Solicitud.new
+  def new 
+    @pet = Pet.find(params[:id])
+    @solicitud = Solicitud.new                  
   end
 
   # GET /solicituds/1/edit
@@ -33,8 +34,10 @@ class SolicitudsController < ApplicationController
   # POST /solicituds
   # POST /solicituds.json
   def create
+    @pet = Pet.find(params[:id])     
     @solicitud = Solicitud.new(solicitud_params)
-    @solicitud.id = current_user.id
+    @solicitud.id = current_user.id        
+    @solicitud.id_pet = @pet.id
     respond_to do |format|
       if @solicitud.save
         solicitud = Solicitud.find(@solicitud.id)

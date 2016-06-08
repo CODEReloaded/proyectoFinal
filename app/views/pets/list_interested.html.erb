@@ -10,6 +10,11 @@
               <%= link_to user_path, :class => 'nav-link' do%>
                 <%= fa_icon "home"%> <div class="content-hidden">Inicio</div>
               <% end %>
+            </li>            
+            <li class="nav-item active">
+              <%= link_to my_pets_pet_path, :class => 'nav-link' do%>
+                <%= fa_icon "list"%> <div class="content-hidden">Mis Publicaciones</div>
+              <% end %>
             </li>
             <li class="nav-item active">
               <%= link_to search_pet_path, :class => 'nav-link' do%>
@@ -73,14 +78,14 @@
                     <td> <%= f.given_name %> <%= f.first_surname %> <%= f.second_surname %></td>
                     <td><%= f.email %> </td> 
                     <td><%= f.phone_number%> <br/></td>                     
-                      <% if Solicitud.where(id: f.id) == [] %>
+                      <% if Solicitud.where(id_pet: @pet.id) == []  %>
                         <td>
                           No hay solicitud
                           <td>Nuevo Dueño</td> 
                         </td>
                       <% else %>                        
                         <td>
-                          <%= link_to 'Ya hay solicitud', show_request_pet_path(id: f.id) %>
+                          <%= link_to 'Ya tiene solicitud', show_request_pet_path(id: f.id) %>
                         </td>
                         <td><li><%= link_to 'Nuevo Dueño', new_owner_pet_path(id: @pet, no: f.id) %></li></td> 
                       <% end %>                                        

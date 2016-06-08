@@ -135,7 +135,7 @@
                         </p>
                         <% if Solicitud.where(id: current_user) == [] %> <!-- Interested and solicitud sent -->
                           <%= link_to 'Dejar de seguir', desinteresado_path(id: @pet.id), :method => :post %> <!-- Uninterest -->
-                          <%= link_to 'Llenar solicitud', new_solicitud_path %> <!-- Send solicitud -->
+                          <%= link_to 'Llenar solicitud', new_solicitud_path(id: @pet.id) %> <!-- Send solicitud -->
 
                         <% else %> <!-- Solicitud sent -->
                           <%= link_to desinteresado_path(id: @pet.id), :method => :post, :class => 'btn btn-secondary' do %>

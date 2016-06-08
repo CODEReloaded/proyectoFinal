@@ -50,11 +50,12 @@
     </div>
     <div class="form-group">
     <%= f.input :ajuste, hint:' ¿Está dispuesto a que el perro o gato tenga un periodo de ajuste en el que aprenda dónde debe ir al baño y se adapte a la familia? ', as: :boolean, checked_value: true, unchecked_value: false, input_html: { class:'form-control' } %>
-    </div>
+    </div>    
   </div>
 
+  <%= hidden_field_tag(:id, @pet.id) %>  
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit%>
   </div>
 <% end %>
   </div>
