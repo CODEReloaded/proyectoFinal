@@ -10,15 +10,10 @@
               <%= link_to user_path, :class => 'nav-link' do%>
                 <%= fa_icon "home"%> <div class="content-hidden">Inicio</div>
               <% end %>
-            </li>            
-            <li class="nav-item active">
-              <%= link_to my_pets_pet_path, :class => 'nav-link' do%>
-                <%= fa_icon "list"%> <div class="content-hidden">Mis Publicaciones</div>
-              <% end %>
             </li>
-            <li class="nav-item active">
-              <%= link_to search_pet_path, :class => 'nav-link' do%>
-                <%= fa_icon "search(kms: 5)"%> <div class="content-hidden">Buscar</div>
+            <li class="nav-item">
+              <%= link_to search_pet_path(kms: 5), :class => 'nav-link' do%>
+                <%= fa_icon "search"%> <div class="content-hidden">Buscar</div>
               <% end %>
             </li>
             <li class="nav-item">
@@ -81,13 +76,17 @@
                       <% if Solicitud.where(id_pet: @pet.id) == []  %>
                         <td>
                           No hay solicitud
-                          <td>Nuevo Dueño</td> 
+                          <td>
+                            <%= link_to 'Nuevo dueño', new_owner_pet_path(id: @pet, no: f.id), class:"btn btn-secondary disabled" %>
+                          </td> 
                         </td>
                       <% else %>                        
                         <td>
                           <%= link_to 'Ya tiene solicitud', show_request_pet_path(id: f.id) %>
                         </td>
-                        <td><li><%= link_to 'Nuevo Dueño', new_owner_pet_path(id: @pet, no: f.id) %></li></td> 
+                        <td>
+                          <%= link_to 'Nuevo dueño', new_owner_pet_path(id: @pet, no: f.id), class:"btn btn-primary" %>
+                        </td>
                       <% end %>                                        
                   </tr>
                 <% end %>

@@ -11,14 +11,14 @@
                 <%= fa_icon "home"%> <div class="content-hidden">Inicio</div>
               <% end %>
             </li>
-            <li class="nav-item active">
-              <%= link_to my_pets_pet_path, :class => 'nav-link' do%>
-                <%= fa_icon "list"%> <div class="content-hidden">Mis Publicaciones</div>
-              <% end %>
-            </li>
             <li class="nav-item">
               <%= link_to search_pet_path(kms: 5), :class => 'nav-link' do%>
                 <%= fa_icon "search"%> <div class="content-hidden">Buscar</div>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to my_pets_pet_path, :class => 'nav-link' do%>
+                <%= fa_icon "list"%> <div class="content-hidden">Mis Publicaciones</div>
               <% end %>
             </li>            
             <li class="nav-item ">

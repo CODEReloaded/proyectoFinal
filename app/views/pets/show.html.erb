@@ -5,7 +5,7 @@
             <i class="fa fa-paw fa-4"></i>
             <div class="content-hidden">Mascotas</div>
           </a>
-          <% if current_user %>
+          <% if current_user %> <!-- Si el usuario inicio sesion -->
           <ul class="nav navbar-nav collapsed pull-xs-right">
             <li class="nav-item">
               <%= link_to user_path, :class => 'nav-link' do%>
@@ -38,7 +38,7 @@
               <% end %>
             </li>
           </ul>
-          <% else %>
+          <% else %> <!-- Si el usuario no inicio sesion -->
           <ul class="nav navbar-nav collapsed pull-xs-right">
             <li class="nav-item">
               <%= link_to root_path, :class => 'nav-link' do%>
@@ -63,7 +63,7 @@
             </li>
           </ul>
           <% end %>
-        </div><!-- bs-example-navbar-collapse-1 -->
+        </div> <!-- fin de nav -->
       </nav>
 
       <p id="notice" hidden><%= notice %></p>
@@ -72,7 +72,7 @@
 
       <nav>
         <ul class="pager">
-          <li><%= link_to '« Regresar', :back %></li>          
+          <li><%= link_to '« Inicio', root_path %></li>
         </ul>
       </nav>
 
@@ -134,8 +134,12 @@
                           Esta mascota te interesa puedes dejar de seguirla o mandar solicitud, solo puedes mandar una solicitud a la vez, si ya enviaste una ya no podras mandar mas a otras mascotas
                         </p>
                         <% if Solicitud.where(id: current_user) == [] %> <!-- Interested and solicitud sent -->
-                          <%= link_to 'Dejar de seguir', desinteresado_path(id: @pet.id), :method => :post %> <!-- Uninterest -->
-                          <%= link_to 'Llenar solicitud', new_solicitud_path(id: @pet.id) %> <!-- Send solicitud -->
+                          <%= link_to desinteresado_path(id: @pet.id), :method => :post, :class => 'btn btn-secondary' do %>
+                            <%= fa_icon "times" %> Ya no me interesa
+                          <% end %> <!-- Uninterest -->
+                          <%= link_to new_solicitud_path(id: @pet.id), :method => :post, :class => 'btn btn-secondary' do %>
+                            <%= fa_icon "arrow" %> Llenar solicitud
+                          <% end %> <!-- Send solicitud -->
 
                         <% else %> <!-- Solicitud sent -->
                           <%= link_to desinteresado_path(id: @pet.id), :method => :post, :class => 'btn btn-secondary' do %>

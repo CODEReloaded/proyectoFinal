@@ -5,7 +5,7 @@
             <i class="fa fa-paw fa-4"></i>
             <div class="content-hidden">Mascotas</div>
           </a>
-          <% if current_user %>
+          <% if current_user %> <!-- Si el usuario inicio sesion -->
           <ul class="nav navbar-nav collapsed pull-xs-right">
             <li class="nav-item">
               <%= link_to user_path, :class => 'nav-link' do%>
@@ -38,7 +38,7 @@
               <% end %>
             </li>
           </ul>
-          <% else %>
+          <% else %> <!-- Si el usuario no inicio sesion -->
           <ul class="nav navbar-nav collapsed pull-xs-right">
             <li class="nav-item">
               <%= link_to root_path, :class => 'nav-link' do%>
