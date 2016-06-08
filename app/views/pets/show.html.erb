@@ -97,7 +97,7 @@
                     </div>
                     <strong>Nuevo Dueño: </strong> <%= User.find(@pet.new_owner).given_name %>
                   <% else %><!-- Show owner's name -->
-                    <strong>Dueño: </strong> <%= @owner.given_name %>
+                    <strong>Dueño: </strong> <%= User.find(@pet.user_id).given_name %>
                   <% end %>
                   </p>
                   <p style="text-align: justify">
@@ -133,7 +133,7 @@
                         <p style="text-align: center">
                           Esta mascota te interesa puedes dejar de seguirla o mandar solicitud, solo puedes mandar una solicitud a la vez, si ya enviaste una ya no podras mandar mas a otras mascotas
                         </p>
-                        <% if User.find(current_user.id).following_by_type_count('Solicitud') == 0 %> <!-- Interested and solicitud sent -->
+                        <% if Solicitud.where(id: current_user) == [] %> <!-- Interested and solicitud sent -->
                           <%= link_to 'Dejar de seguir', desinteresado_path(id: @pet.id), :method => :post %> <!-- Uninterest -->
                           <%= link_to 'Llenar solicitud', new_solicitud_path %> <!-- Send solicitud -->
 

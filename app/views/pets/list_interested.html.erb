@@ -72,15 +72,18 @@
                   <tr>
                     <td> <%= f.given_name %> <%= f.first_surname %> <%= f.second_surname %></td>
                     <td><%= f.email %> </td> 
-                    <td><%= f.phone_number%> <br/></td> 
-                    <td>
-                      <% if User.find(current_user.id).following_by_type_count('Solicitud') == 0 %>
-                        No hay solicitid
-                      <% else %>
-                        No se cómo encontrarlo XD
-                      <% end %>
-                    </td>
-                    <td><li><%= link_to 'Nuevo Dueño', new_owner_pet_path(id: @pet, no: f.id) %></li></td> 
+                    <td><%= f.phone_number%> <br/></td>                     
+                      <% if Solicitud.where(id: f.id) == [] %>
+                        <td>
+                          No hay solicitud
+                          <td>Nuevo Dueño</td> 
+                        </td>
+                      <% else %>                        
+                        <td>
+                          Ya hay solicitud
+                        </td>
+                        <td><li><%= link_to 'Nuevo Dueño', new_owner_pet_path(id: @pet, no: f.id) %></li></td> 
+                      <% end %>                                        
                   </tr>
                 <% end %>
                 </table>

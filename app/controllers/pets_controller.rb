@@ -54,7 +54,7 @@ class PetsController < ApplicationController
   end  
 
   def list_interested          
-    @pet = Pet.find(params[:id])
+    @pet = Pet.find(params[:id])            
     render :list_interested
   end  
 
