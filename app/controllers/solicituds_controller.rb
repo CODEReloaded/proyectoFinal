@@ -39,7 +39,7 @@ class SolicitudsController < ApplicationController
       if @solicitud.save
         solicitud = Solicitud.find(@solicitud.id)
         user = User.find(current_user.id)
-        #user.follow(solicitud)
+        #user.follow(solicitud) Esto no porque crea tuplas duplicadas y mal en followers
         format.html { redirect_to @solicitud, notice: 'Tu solicitud ha sido guardada' }
         format.json { render :show, status: :created, location: @solicitud }
       else
