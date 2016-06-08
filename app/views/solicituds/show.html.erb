@@ -1,64 +1,120 @@
-<p id="notice"><%= notice %></p>
+      <nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div clas="container">
+          <a class="navbar-brand" href="">
+            <i class="fa fa-paw fa-4"></i>
+            <div class="content-hidden">Mascotas</div>
+          </a>
+          <ul class="nav navbar-nav collapsed pull-xs-right">
+            <li class="nav-item">
+              <%= link_to user_path, :class => 'nav-link' do%>
+                <%= fa_icon "home"%> <div class="content-hidden">Inicio</div>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to search_pet_path(kms: 5), :class => 'nav-link' do%>
+                <%= fa_icon "search"%> <div class="content-hidden">Buscar</div>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to my_pets_pet_path, :class => 'nav-link' do%>
+                <%= fa_icon "list"%> <div class="content-hidden">Mis Publicaciones</div>
+              <% end %>
+            </li>
+            <li class="nav-item ">
+              <%= link_to new_pet_path, class:"nav-link" do %>
+                <%= fa_icon "pencil-square" %> <div class="content-hidden">Publicar</div>
+              <% end %>
+            </li>
+            <li class="nav-item ">
+              <%= link_to edit_user_path, class:"nav-link" do %>
+                <%= fa_icon "pencil" %> <div class="content-hidden">Editar Cuenta</div>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to destroy_user_session_path, method: 'delete', class:"nav-link" do %>
+                <%= fa_icon "sign-out" %> <div class="content-hidden">Salir</div>
+              <% end %>
+            </li>
+          </ul>
+        </div><!-- bs-example-navbar-collapse-1 -->
+      </nav>
 
-<p>
-  <strong>Nombre:</strong>
-  <%= @solicitud.nombre %>
-</p>
+      <br/>
+      <br/>
+      <nav>
+        <ul class="pager">
+          <li><%= link_to '« Regresar', :back %></li>
+        </ul>
+      </nav>
 
-<p>
-  <strong>Ocupacion:</strong>
-  <%= @solicitud.ocupacion %>
-</p>
+      <div id="wrapper">
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+          <div class="container">
 
-<p>
-  <strong>Edad:</strong>
-  <%= @solicitud.edad %>
-</p>
+            <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Por que quiero una mascota :</strong>
-  <%= @solicitud.por_que %>
-</p>
+            <p>
+              <strong>Nombre:</strong>
+              <%= @solicitud.nombre %>
+            </p>
 
-<p>
-  <strong>Como considero a mi mascota:</strong>
-  <%= @solicitud.consideras %>
-</p>
+            <p>
+              <strong>Ocupacion:</strong>
+              <%= @solicitud.ocupacion %>
+            </p>
 
-<p>
-  <strong>Experiencia cuidando mascotas:</strong>
-  <%= @solicitud.experiencia %>
-</p>
+            <p>
+              <strong>Edad:</strong>
+              <%= @solicitud.edad %>
+            </p>
 
-<p>
-  <strong>Actividades que realizaria con mi mascota:</strong>
-  <%= @solicitud.actividades %>
-</p>
+            <p>
+              <strong>Por que quiero una mascota :</strong>
+              <%= @solicitud.por_que %>
+            </p>
 
-<p>
-  <strong>Conosco los gastos economicos:</strong>
-  <%= @solicitud.gastos %>
-</p>
+            <p>
+              <strong>Como considero a mi mascota:</strong>
+              <%= @solicitud.consideras %>
+            </p>
 
-<p>
-  <strong>Vivo en :</strong>
-  <%= @solicitud.vivienda %>
-</p>
+            <p>
+              <strong>Experiencia cuidando mascotas:</strong>
+              <%= @solicitud.experiencia %>
+            </p>
 
-<p>
-  <strong>La mascota dormiria en :</strong>
-  <%= @solicitud.dormir %>
-</p>
+            <p>
+              <strong>Actividades que realizaria con mi mascota:</strong>
+              <%= @solicitud.actividades %>
+            </p>
 
-<p>
-  <strong>Si me mudara mi mascota :</strong>
-  <%= @solicitud.mudarse %>
-</p>
+            <p>
+              <strong>Conosco los gastos economicos:</strong>
+              <%= @solicitud.gastos %>
+            </p>
 
-<p>
-  <strong>Estoy dispuesto a que la mascota se adapte a su nuevo entorno :</strong>
-  <%= @solicitud.ajuste %>
-</p>
+            <p>
+              <strong>Vivo en :</strong>
+              <%= @solicitud.vivienda %>
+            </p>
 
-<%= link_to 'Edit', edit_solicitud_path(@solicitud) %> |
-<%= link_to 'Back', :back %>
+            <p>
+              <strong>La mascota dormiria en :</strong>
+              <%= @solicitud.dormir %>
+            </p>
+
+            <p>
+              <strong>Si me mudara mi mascota :</strong>
+              <%= @solicitud.mudarse %>
+            </p>
+
+            <p>
+              <strong>Estoy dispuesto a que la mascota se adapte a su nuevo entorno :</strong>
+              <%= @solicitud.ajuste %>
+            </p>
+
+          </div>
+        </div><!-- /#page-content-wrapper -->
+      </div><!-- /#wrapper -->

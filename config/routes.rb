@@ -1,6 +1,5 @@
 Rails.application.routes.draw do  
   
-  resources :solicituds
   root 'pets#index'
 
   get 'mascotas/buscar' => 'pets#search', as: :search_pet
@@ -9,6 +8,11 @@ Rails.application.routes.draw do
   get 'mascotas/:id/interesados' => 'pets#list_interested', as: :list_interested_pet
   get 'usuario/nuevo_dueño' => 'pets#new_owner', as: :new_owner_pet
   get 'mascota/:id/solicitud' => 'pets#show_request', as: :show_request_pet
+  #post 'solicitud/nueva' => 'solicituds#new', as: :new_solicitud
+
+  resources :solicituds,
+    path: 'solicitud',
+    path_names: { new:'nueva', edit: "editar", create:'nueva'}
 
   resources :pets,
     path: 'mascotas',
@@ -24,8 +28,8 @@ Rails.application.routes.draw do
                   registration: 'registrarme', sign_up: '/', confirmation: 'confirmacion'}
 
   devise_scope :user do
-    post 'dislike' => 'pets#notInterested', as: :desinteresado
-    post 'like' => 'pets#interested', as: :interesado
+    get 'dislike' => 'pets#notInterested', as: :desinteresado
+    get 'like' => 'pets#interested', as: :interesado
     get 'contraseña/nueva' => 'users/passwords#new',  as: :new_password
     post 'contraseña/nueva' => 'users/passwords#create', as: :password
     get 'contraseña/editar' => 'users/passwords#edit', as: :edit_password

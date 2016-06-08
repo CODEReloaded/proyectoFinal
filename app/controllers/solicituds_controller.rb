@@ -23,8 +23,8 @@ class SolicitudsController < ApplicationController
 
   # GET /solicituds/new
   def new 
-    @pet = Pet.find(params[:id])
-    @solicitud = Solicitud.new                  
+    @pet = Pet.friendly.find(params[:id])
+    @solicitud = Solicitud.new
   end
 
   # GET /solicituds/1/edit

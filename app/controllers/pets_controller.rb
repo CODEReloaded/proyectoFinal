@@ -32,6 +32,9 @@ class PetsController < ApplicationController
 
   # GET /pets/1/edit
   def edit
+    if current_user.id != @pet.user_id
+      redirect_to user_path
+    end
   end
   
   def notInterested
@@ -39,7 +42,6 @@ class PetsController < ApplicationController
     @title = @pet.name + ' | Mascotas'
     user = User.find(current_user.id)
     user.stop_following(@pet)
-    notice = "Ya no te interesa esta mascota"
     render :show
   end  
 
@@ -49,7 +51,6 @@ class PetsController < ApplicationController
     @title = @pet.name + ' | Mascotas' 
     user = User.find(current_user.id)
     user.follow(@pet)
-    notice = "Ahora te interesa esta mascotas"
     render :show
   end  
 

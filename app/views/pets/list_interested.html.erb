@@ -82,7 +82,7 @@
                         </td>
                       <% else %>                        
                         <td>
-                          <%= link_to 'Ya tiene solicitud', show_request_pet_path(id: f.id) %>
+                          <%= link_to 'Ya tiene solicitud', solicitud_path(id: f.id) %>
                         </td>
                         <td>
                           <%= link_to 'Nuevo dueño', new_owner_pet_path(id: @pet, no: f.id), class:"btn btn-primary" %>

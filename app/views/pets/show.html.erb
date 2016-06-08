@@ -46,7 +46,7 @@
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to search_pet_path, :class => 'nav-link' do%>
+              <%= link_to search_pet_path(kms: 5), :class => 'nav-link' do%>
                 <%= fa_icon "search"%> <div class="content-hidden">Buscar</div>
               <% end %>
             </li>
@@ -66,7 +66,6 @@
         </div> <!-- fin de nav -->
       </nav>
 
-      <p id="notice" hidden><%= notice %></p>
       
       <br/><br/> <!-- Agregar espacio entre el header y body--> 
 
@@ -80,6 +79,8 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
           <div class="container">
+            
+              <%= notice %>
 
             <div class="row">
               <div class="col-sm-12 col-md-6 col-lg-5">
@@ -93,7 +94,7 @@
                 <div class="col-lg-offset-1 col-sm-12 col-lg-10">
                   <p>
                   <% if @pet.new_owner %><!-- If has new owner to show his name -->
-                    <div> Esta mascota fue adoptada
+                    <div class="alert alert-info" role="alert"> Esta mascota fue adoptada
                     </div>
                     <strong>Nuevo Dueño: </strong> <%= User.find(@pet.new_owner).given_name %>
                   <% else %><!-- Show owner's name -->
@@ -117,7 +118,8 @@
                 <p>
                   <strong >Edad: </strong> <%= @pet.age %> <br/>
                   <strong>Tamaño: </strong> <%= @pet.height %> <br/>
-                  <strong>Esterilización: <%= @pet.sterilization %></strong>  
+                  <% if @pet.sterilization? then sterilization = 'Sí' else sterilization =  'No' end %>
+                  <strong>Esterilizado: <%= sterilization  %></strong>  
                 </p>
                 <p style="text-align:center">
                   <% if user_signed_in? %> <!-- If is logged in -->
@@ -134,22 +136,22 @@
                           Esta mascota te interesa puedes dejar de seguirla o mandar solicitud, solo puedes mandar una solicitud a la vez, si ya enviaste una ya no podras mandar mas a otras mascotas
                         </p>
                         <% if Solicitud.where(id: current_user) == [] %> <!-- Interested and solicitud sent -->
-                          <%= link_to desinteresado_path(id: @pet.id), :method => :post, :class => 'btn btn-secondary' do %>
+                          <%= link_to desinteresado_path(id: @pet),  :class => 'btn btn-secondary' do %>
                             <%= fa_icon "times" %> Ya no me interesa
                           <% end %> <!-- Uninterest -->
-                          <%= link_to new_solicitud_path(id: @pet.id), :method => :post, :class => 'btn btn-secondary' do %>
+                          <%= link_to new_solicitud_path(id: @pet), :class => 'btn btn-secondary' do %>
                             <%= fa_icon "arrow" %> Llenar solicitud
                           <% end %> <!-- Send solicitud -->
 
                         <% else %> <!-- Solicitud sent -->
-                          <%= link_to desinteresado_path(id: @pet.id), :method => :post, :class => 'btn btn-secondary' do %>
+                          <%= link_to desinteresado_path(id: @pet), :class => 'btn btn-secondary' do %>
                             <%= fa_icon "times" %> Ya no me interesa
                           <% end %> <!-- Uninterest -->
                           Ya has enviado una solicitud
                         <% end %>
                       <% else %> <!-- Not interested -->
                         <% if current_user.id != @pet.user_id %> <!-- Logged in and not interested -->
-                          <%= link_to interesado_path(id: @pet), :method => :post, :class => 'btn btn-secondary' do %>
+                          <%= link_to interesado_path(id: @pet), :class => 'btn btn-secondary' do %>
                             <%= fa_icon "paw" %> Me interesa
                           <% end %> <!-- Uninterest -->
                         <% end %>

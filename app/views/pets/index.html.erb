@@ -44,7 +44,7 @@
               <h1 class="display-3">Necesitas un amigo?</h1>
               <p class="lead">En esta página podras encontrar a tu amigo perfecto, no discriminamos los gustos o preferencias de nuestros usuarios, así que ¿qué esperas?, busca un amigo o ecuentra un nuevo hogar para una mascota que tengas.</p>
               <p>
-                <%= link_to search_pet_path, :class => 'nav-link btn btn-lg btn-success' do%>
+                <%= link_to search_pet_path(kms: 5), :class => 'nav-link btn btn-lg btn-success' do%>
                   <%= fa_icon "search"%> Buscar
                 <% end %>
                 <%= link_to new_pet_path, :class => 'nav-link btn btn-lg btn-success' do%>
