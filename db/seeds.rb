@@ -12,14 +12,17 @@ user.skip_confirmation!
 user.save!
 
 
+aven = ['Calzada de Tlalpan ', 'Calzada del hueso ', 'Insurgentes ']
+
 count = 0
-while count < 3
-  r = Random.rand(10...5060) 
+while count < 4
+  r = Random.rand(100...3060) 
+  k = Random.rand(-1...3)
   user = User.new(email: FFaker::Internet.free_email, password: 'password', 
   	given_name: FFaker::NameMX.name, first_surname: FFaker::NameMX.last_name, 
   	second_surname: FFaker::NameMX.last_name, 
   	phone_number: FFaker::PhoneNumberMX.international_mobile_phone_number, 
-  	address: 'Calzada de Tlalpan '+ r.to_s + ', Ciudad de México' )
+  	address: aven[k]+ r.to_s + ', Ciudad de México' )
   user.skip_confirmation!
   user.save!
   count = count + 1
