@@ -80,7 +80,7 @@
                         </td>
                       <% else %>                        
                         <td>
-                          Ya hay solicitud
+                          <%= link_to 'Ya hay solicitud', show_request_pet_path(id: f.id) %>
                         </td>
                         <td><li><%= link_to 'Nuevo Dueño', new_owner_pet_path(id: @pet, no: f.id) %></li></td> 
                       <% end %>                                        

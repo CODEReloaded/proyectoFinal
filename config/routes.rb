@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'usuario/mis_mascotas' => 'pets#my_pets', as: :my_pets_pet
   get 'mascotas/:id/interesados' => 'pets#list_interested', as: :list_interested_pet
   get 'usuario/nuevo_dueño' => 'pets#new_owner', as: :new_owner_pet
+  get 'mascota/:id/solicitud' => 'pets#show_request', as: :show_request_pet
 
   resources :pets,
     path: 'mascotas',

@@ -72,7 +72,11 @@ class PetsController < ApplicationController
     @pets = Pet.where(user_id: user.id).page(params[:page]).per(3)
     render :my_pets
   end
-  
+
+  def show_request
+    @solicitud = Solicitud.find(params[:id])
+    render :show_request
+  end
   # POST /pets
   # POST /pets.json
   def create
