@@ -90,7 +90,6 @@
                       <div class="form-group">
                         <%= f.input :current_password, required: true, autofocus: (resource.errors.include?(:current_password) ? true : false ), input_html: { class:'form-control' }, hint: "Debes ingresar tu contraseña actual para actualizar los datos " %>
                       </div>
-                    </div>
 
                     <div class="form-actions">
                       <%= f.button :submit, "Actualizar datos", class: 'btn btn-primary btn-block' %>

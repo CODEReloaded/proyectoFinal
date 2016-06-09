@@ -18,7 +18,7 @@
                         <%= f.input :name, required: true, autofocus: ((@pet.errors.include?(:name)) ? true : false), input_html: { class:'form-control' }  %>
                       </div>
                       <div class="form-group">
-                        <%= f.input :age, required: true, autofocus: ((@pet.errors.include?(:age)) ? true : false), input_html: { class:'form-control' } %>
+                        <%= f.input :age, required: true, autofocus: ((@pet.errors.include?(:age)) ? true : false), input_html: { class:'form-control' }, hint: 'Edad en meses ' %>
                       </div>
                       <div class="form-group">
                         <%= f.input :specie, required: true, autofocus: ((@pet.errors.include?(:specie)) ? true : false), input_html: { class:'form-control' } %>
@@ -39,10 +39,13 @@
                       <%= f.input :adpted, as: :boolean, checked_value: true, unchecked_value: false, input_html: { class:'form-control' } %>
                       </div>
                       <div class="form-group">
-                        <%= f.input :description, required: true, autofocus: ((@pet.errors.include?(:height)) ? true : false), input_html: { class:'form-control txtarea' } %>
+                        <%= f.input :description, required: true, autofocus: ((@pet.errors.include?(:description)) ? true : false), input_html: { class:'form-control txtarea' } %>
                       </div>
                       <div class="form-group">
                         <%= f.file_field :imagen, required: true, input_html: { class:'form-control' } %>
+                        <% if @pet.errors.include?(:imagen) %>
+                        <div class="text-danger">El archivo debe ser un formato de imagen de tamaño menor a 500KB</div>
+                        <% end %>
                         <div class="text-info">La mascota debe estar junto a un objeto para poder comparar su tamaño</div>
                       </div>
                     </div>                    

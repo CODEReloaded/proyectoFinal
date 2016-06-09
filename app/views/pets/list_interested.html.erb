@@ -72,8 +72,8 @@
                   <tr>
                     <td> <%= f.given_name %> <%= f.first_surname %> <%= f.second_surname %></td>
                     <td><%= f.email %> </td> 
-                    <td><%= f.phone_number%> <br/></td>                     
-                      <% if Solicitud.where(id_pet: @pet.id) == []  %>
+                    <td><%= f.phone_number%> </td>                     
+                      <% if Solicitud.where(id_pet: @pet.id,id: f.id ) == [] %>
                         <td>
                           No hay solicitud
                           <td>
