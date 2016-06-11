@@ -65,33 +65,40 @@
                     <th>Nombre Competo</th>
                     <th>Correo</th>
                     <th>Telefono</th>
+                    <th>Dirección</th>
                     <th>Solicitud</th>
                     <th>Seleccionar</th>
                   </tr>                                                                        
                 <% @pet.followers.each do |f| %>
                   <tr>
                     <td> <%= f.given_name %> <%= f.first_surname %> <%= f.second_surname %></td>
-                    <td><%= f.email %> </td> 
-                    <td><%= f.phone_number%> </td>                     
-                      <% if Solicitud.where(id_pet: @pet.id,id: f.id ) == [] %>
-                        <td>
-                          No hay solicitud
-                          <td>
-                            <%= link_to 'Nuevo dueño', new_owner_pet_path(id: @pet, no: f.id), class:"btn btn-secondary disabled" %>
-                          </td> 
-                        </td>
-                      <% else %>                        
-                        <td>
-                          <%= link_to 'Ya tiene solicitud', solicitud_path(id: f.id) %>
-                        </td>
-                        <td>
-                          <%= link_to 'Nuevo dueño', new_owner_pet_path(id: @pet, no: f.id), class:"btn btn-primary" %>
-                        </td>
-                      <% end %>                                        
+                    <td> <%= f.email %> </td> 
+                    <td> <%= f.phone_number%> </td>
+                    <td> <%= link_to 'Ver mapa', distance_path(id: f.id), class: 'dist' %> </td> 
+                    <% if Solicitud.where(id_pet: @pet.id,id: f.id ) == [] %>
+                    <td>
+                      No hay solicitud
+                    </td>
+                    <td>
+                      <%= link_to 'Nuevo dueño', new_owner_pet_path(id: @pet, no: f.id), class:"btn btn-secondary disabled" %>
+                    </td>
+                    <% else %>                        
+                    <td>
+                      <%= link_to 'Ya tiene solicitud', solicitud_path(id: f.id) %>
+                    </td>
+                    <td>
+                      <%= link_to 'Nuevo dueño', new_owner_pet_path(id: @pet, no: f.id), class:"btn btn-primary" %>
+                    </td>
+                    <% end %>                                        
                   </tr>
                 <% end %>
                 </table>
               </center>
+            </div>
+            <div class="row">
+              <div class="col-sm-offset-1 col-sm-10">
+                <div id="map" style="margin-top: 20px; width:100%; height:450px;"></div>
+              </div>
             </div>
             <% else %>
             No se encontraron seguidores
@@ -99,3 +106,33 @@
           </div>
         </div>
       </div><!-- /#wrapper -->
+
+      <script src="//maps.google.com/maps/api/js?v=3.23&sensor=false&client=&key=&libraries=geometry&language=&hl=®ion="></script>
+      <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+      <script src="//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js"></script>
+
+      <script>
+      handler = Gmaps.build('Google');
+      handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+        markers = handler.addMarkers(<%=raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+      });
+      $('.dist').click(function(e) {
+        urls = $(this).attr('href');
+        $.ajax({
+          url: urls,
+          type: "POST",
+          success: function(data){
+            console.log(data);
+            handler = Gmaps.build('Google');
+            handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+              markers = handler.addMarkers(data);
+              handler.bounds.extendWith(markers);
+              handler.fitMapToBounds();
+            });
+          }
+        });
+        e.preventDefault();
+      });
+      </script>

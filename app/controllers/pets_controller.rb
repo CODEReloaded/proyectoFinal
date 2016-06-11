@@ -56,6 +56,7 @@ class PetsController < ApplicationController
 
   def list_interested          
     @pet = Pet.find(params[:id])            
+    @hash = [{lat: current_user.latitude, lng: current_user.longitude, infowindow: 'Tú'}]
     render :list_interested
   end  
 
@@ -116,6 +117,8 @@ class PetsController < ApplicationController
         marker.infowindow '<a style="font-size:18px" href="'+pet_path(pet)+'">'+pet.name+'</a>'
       end
     end
+    @hash << { "lat":19.3234472, "lng":-99.1796417, "infowindow":'<div style="font-size:18px">Aqui estas tu</div> ' }
+    puts @hash.to_json
   end
 
   # PATCH/PUT /pets/1
@@ -140,6 +143,14 @@ class PetsController < ApplicationController
       format.html { redirect_to pets_url, notice: 'Pet was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def show_distance
+    @user = User.find(params[:id])
+    msg = [{ lat: @user.latitude, lng: @user.longitude, 
+             infowindow: '<p>'+@user.given_name+'</p><p>'+@user.address+'</p>' }, 
+           {lat: current_user.latitude, lng: current_user.longitude, infowindow: 'Tú'}]
+    render :json => msg
   end
 
   private

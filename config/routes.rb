@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'usuario/nuevo_dueño' => 'pets#new_owner', as: :new_owner_pet
   get 'mascota/:id/solicitud' => 'pets#show_request', as: :show_request_pet
   #post 'solicitud/nueva' => 'solicituds#new', as: :new_solicitud
+  post 'distancia' => 'pets#show_distance', as: :distance
 
   resources :solicituds,
     path: 'solicitud',

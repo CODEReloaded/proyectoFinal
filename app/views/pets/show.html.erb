@@ -91,12 +91,13 @@
 
                 <div class="col-lg-offset-1 col-sm-12 col-lg-10">
                   <p>
-                  <% if @pet.new_owner %><!-- If has new owner to show his name -->
+                  <% if @pet.new_owner then owner = User.find(@pet.new_owner) else owner = User.find(@pet.user_id) end %>
+                  <% if @pet.new_owner %>
                     <div class="alert alert-info" role="alert"> Esta mascota fue adoptada
                     </div>
-                    <strong>Nuevo Dueño: </strong> <%= User.find(@pet.new_owner).given_name %>
+                    <strong>Nuevo Dueño: </strong> <%= owner.given_name %>
                   <% else %><!-- Show owner's name -->
-                    <strong>Dueño: </strong> <%= User.find(@pet.user_id).given_name %>
+                    <strong>Dueño: </strong> <%= owner.given_name %>
                   <% end %>
                   </p>
                   <p style="text-align: justify">
@@ -117,7 +118,8 @@
                   <strong >Edad: </strong> <%= @pet.age %> <br/>
                   <strong>Tamaño: </strong> <%= @pet.height %> <br/>
                   <% if @pet.sterilization? then sterilization = 'Sí' else sterilization =  'No' end %>
-                  <strong>Esterilizado: <%= sterilization  %></strong>  
+                  <strong>Esterilizado: <%= sterilization  %></strong> <br/>
+                  <strong>Direccion: </strong> <%= owner.address %>
                 </p>
                 <p style="text-align:center">
                   <% if user_signed_in? %> <!-- If is logged in -->
