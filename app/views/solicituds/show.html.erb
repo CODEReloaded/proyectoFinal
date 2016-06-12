@@ -51,80 +51,97 @@
       <div id="wrapper">
         <!-- Page Content -->
         <div id="page-content-wrapper">
-          <div class="container">
-
-            <p>
-              <strong>Nombre:</strong>
-              <%= @solicitud.nombre %>
-            </p>
-
-            <p>
-              <strong>Ocupacion:</strong>
-              <%= @solicitud.ocupacion %>
-            </p>
-
-            <p>
-              <strong>Edad:</strong>
-              <%= @solicitud.edad %>
-            </p>
-
-            <p>
-              <strong>Por que quiero una mascota :</strong>
-              <%= @solicitud.por_que %>
-            </p>
-
-            <p>
-              <strong>Como considero a mi mascota:</strong>
-              <%= @solicitud.consideras %>
-            </p>
-
-            <p>
-              <strong>Experiencia cuidando mascotas:</strong>
-              <%if @solicitud.experiencia ==false%>
+          <div class="sol">
+            <center>
+            <table>
+            <div class='solicitud'>            
+                <tr>
+                  <td class='sol'><center>Nombre:</center></td>
+                  <td class='sol'><%= @solicitud.nombre %></td>
+                </tr>                              
+            </div>
+            <div class='solicitud'>            
+                <tr>
+                  <td class='sol'><center>Ocupacion:</center></td>
+                  <td class='sol'><%= @solicitud.ocupacion %></td>
+                </tr>                              
+            </div>
+            <div class='solicitud'>              
+                <tr>
+                  <td class='sol'><center>Edad:</center></td>
+                  <td class='sol'><%= @solicitud.edad %></td>
+                </tr>                              
+            </div>
+            <div class='solicitud'>              
+                <tr>
+                  <td class='sol'><center>Por que quiero una mascota :</center></td>
+                  <td class='sol'><%= @solicitud.por_que %></td>
+                </tr>                                                                                            
+            </div>
+            <div class='solicitud'>              
+                <tr>
+                  <td class='sol'><center>Como considero a mi mascota:</center></td>
+                  <td class='sol'>  <%= @solicitud.consideras %></td>
+                </tr>                              
+            </div>
+            <div class='solicitud'>              
+                <tr>
+                  <td class='sol'><center>Experiencia cuidando mascotas:</center></td>
+                  <td class='sol'><%if @solicitud.experiencia ==false%>
                 No
               <%else%>
               Si
-              <%end%>
-            </p>
-
-            <p>
-              <strong>Actividades que realizaria con mi mascota:</strong>
-              <%= @solicitud.actividades %>
-            </p>
-
-            <p>
-              <strong>Conosco los gastos economicos:</strong>              
-              <%if @solicitud.gastos ==false%>
-                No
-              <%else%>
-              Si
-              <%end%>
-            </p>
-
-            <p>
-              <strong>Vivo en :</strong>
-              <%= @solicitud.vivienda %>
-            </p>
-
-            <p>
-              <strong>La mascota dormiria en :</strong>
-              <%= @solicitud.dormir %>
-            </p>
-
-            <p>
-              <strong>Si me mudara mi mascota :</strong>
-              <%= @solicitud.mudarse %>
-            </p>
-
-            <p>
-              <strong>Estoy dispuesto a que la mascota se adapte a su nuevo entorno :</strong>              
-              <%if @solicitud.ajuste==false%>
-                No
-              <%else%>
-              Si
-              <%end%>
-            </p>
-
+              <%end%></td>
+                </tr>
+            </div>
+            <div class='solicitud'>              
+                <tr>
+                  <td class='sol'><center>Actividades que realizaria con mi mascota:</center></td>
+                  <td class='sol'><%= @solicitud.actividades %></td>
+                </tr> 
+            </div>
+            <div class='solicitud'>
+                <tr>
+                  <td class='sol'><center>Conosco los gastos economicos:</center></td>
+                  <td class='sol'><%if @solicitud.gastos ==false%>
+                        No
+                        <%else%>
+                        Si
+                        <%end%>
+                  </td>
+                </tr>                
+            </div>
+            <div class='solicitud'>
+                <tr>
+                  <td class='sol'><center>Vivo en :</center></td>
+                  <td class='sol'><%= @solicitud.vivienda %></td>
+                </tr>                                                                                      
+            </div>
+            <div class='solicitud'>              
+                <tr>
+                  <td class='sol'><center>La mascota dormiria en :</center></td>
+                  <td class='sol'><%= @solicitud.dormir %></td>
+                </tr>                
+            </div>
+            <div class='solicitud'>              
+                <tr>
+                  <td class='sol'><center>Si me mudara mi mascota :</center></td>
+                  <td class='sol'><%= @solicitud.mudarse %></td>
+                </tr>                
+            </div>
+            <div class='solicitud'>              
+                <tr>
+                  <td class='sol'><center>Estoy dispuesto a que la mascota se adapte a su nuevo entorno :</center></td>
+                  <td class='sol'><%if @solicitud.ajuste==false%>
+                        No
+                      <%else%>
+                        Si
+                      <%end%>
+                  </td>
+                </tr>                              
+            </div>
+            </table>                                                        
+            </center>
           </div>
         </div><!-- /#page-content-wrapper -->
       </div><!-- /#wrapper -->
