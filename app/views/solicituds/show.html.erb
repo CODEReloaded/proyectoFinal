@@ -80,7 +80,11 @@
 
             <p>
               <strong>Experiencia cuidando mascotas:</strong>
-              <%= @solicitud.experiencia %>
+              <%if @solicitud.experiencia ==false%>
+                No
+              <%else%>
+              Si
+              <%end%>
             </p>
 
             <p>
@@ -89,8 +93,12 @@
             </p>
 
             <p>
-              <strong>Conosco los gastos economicos:</strong>
-              <%= @solicitud.gastos %>
+              <strong>Conosco los gastos economicos:</strong>              
+              <%if @solicitud.gastos ==false%>
+                No
+              <%else%>
+              Si
+              <%end%>
             </p>
 
             <p>
@@ -109,8 +117,12 @@
             </p>
 
             <p>
-              <strong>Estoy dispuesto a que la mascota se adapte a su nuevo entorno :</strong>
-              <%= @solicitud.ajuste %>
+              <strong>Estoy dispuesto a que la mascota se adapte a su nuevo entorno :</strong>              
+              <%if @solicitud.ajuste==false%>
+                No
+              <%else%>
+              Si
+              <%end%>
             </p>
 
           </div>

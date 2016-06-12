@@ -31,25 +31,34 @@
     <%= f.input :consideras, label: '¿Como considerarias a tu nueva mascota?', autofocus: ((@solicitud.errors.include?(:consideras)) ? true : false), required: true, input_html: { class:'form-control' } %>
     </div>
     <div class="form-group">
-    <%= f.input :experiencia, hint: '¿Has tenido experiencia cuidando mascotas?', as: :boolean, checked_value: true, unchecked_value: false, input_html: { class:'form-control' } %>
+      ¿Has tenido experiencia cuidando mascotas?
+    </div>
+    <div class="form-group">
+    <%= f.input :experiencia,  as: :boolean, checked_value: true, unchecked_value: false, input_html: { class:'form-control' } %>
     </div>
     <div class="form-group">
     <%= f.input :actividades, label:'¿Qué tipo de actividades planea realizar con el perro o gato que desea adoptar?', autofocus: ((@solicitud.errors.include?(:actividades)) ? true : false), required: true, input_html: { class:'form-control' } %>
     </div>
     <div class="form-group">
-    <%= f.input :gastos, hint:'¿Conoces cuales son los gastos economicos qe involucran tener mascota?',as: :boolean, checked_value: true, unchecked_value: false, input_html: { class:'form-control' } %>
+      ¿Conoces cuales son los gastos economicos qe involucran tener mascota?
+    </div>
+    <div class="form-group">
+    <%= f.input :gastos, as: :boolean, checked_value: true, unchecked_value: false, input_html: { class:'form-control' } %>
     </div>
     <div class="form-group">
     <%= f.input :vivienda, label:'¿En donde vives?', autofocus: ((@solicitud.errors.include?(:vivienda)) ? true : false), required: true, input_html: { class:'form-control' } %>
     </div>
     <div class="form-group">
     <%= f.input :dormir, label:'¿En donde dormiria la mascota?', autofocus: ((@solicitud.errors.include?(:dormir)) ? true : false), required: true, input_html: { class:'form-control' } %>
-    </div>
+    </div>    
     <div class="form-group">
     <%= f.input :mudarse, label:'¿Qué sucedería si tuviera que mudarse a otra casa o ciudad /país? ', autofocus: ((@solicitud.errors.include?(:mudarse)) ? true : false), required: true, input_html: { class:'form-control' } %>
     </div>
     <div class="form-group">
-    <%= f.input :ajuste, hint:' ¿Está dispuesto a que el perro o gato tenga un periodo de ajuste en el que aprenda dónde debe ir al baño y se adapte a la familia? ', as: :boolean, checked_value: true, unchecked_value: false, input_html: { class:'form-control' } %>
+       ¿Está dispuesto a que el perro o gato tenga un periodo de ajuste en el que aprenda dónde debe ir al baño y se adapte a la familia? 
+    </div>
+    <div class="form-group">
+    <%= f.input :ajuste, as: :boolean, checked_value: true, unchecked_value: false, input_html: { class:'form-control' } %>
     </div>    
   </div>
 
