@@ -20,6 +20,7 @@ class Pet < ActiveRecord::Base
 	enumerize :height, in: [:pequeño, :mediano, :grande]
 
 	mount_uploader :imagen, ImageUploader
+
 	validate :image_size_validation 
 
 	acts_as_mappable :default_units => :kms,
@@ -44,6 +45,6 @@ class Pet < ActiveRecord::Base
 	private
 	def image_size_validation
     	errors[:imagen] << "should be less than 500KB" if imagen.size > 0.5.megabytes
-  end
+    end
 
 end
